@@ -7,7 +7,7 @@ As part of those features team started focusing on basic required funtionality f
 
 ## Sprint 1 
 
-**Planned Events for implmentation**</br>
+**Planned Events for implementation**</br>
 
 - As a User, I can see the enemy's dead body gets disappeared after victory.</br>
 - As a user, I want to see Cut scenes and Victory popup in the game.</br>
