@@ -183,9 +183,9 @@ namespace Fall2020_CSC403_Project {
     }
     private void timeUp()
     {
-        SoundPlayer simpleSound = new SoundPlayer(Resources.timeoutaudio);
+        SoundPlayer simpleSound = new SoundPlayer(Resources.timeout);
         simpleSound.Play();
-        windowpic.Image = Resources.timeout;
+        windowpic.Image = Resources.timeout1;
     }
     #endregion
 
@@ -238,7 +238,7 @@ namespace Fall2020_CSC403_Project {
     {
         playerdied = true;
         playerDead();
-        windowpic.Image = Resources.playerdeadimg;
+        windowpic.Image = Resources.playerdead1;
         applicationPlayPause();
         controlWindowStatus(true, false);
         picPlayer.Visible = false;

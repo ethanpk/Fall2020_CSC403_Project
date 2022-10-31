@@ -157,5 +157,17 @@
   <ItemGroup>
     <None Include="data\pauseaudio.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="data\enemydeadaudio.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\playerdead.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\timeout.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\victoryaudio.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
