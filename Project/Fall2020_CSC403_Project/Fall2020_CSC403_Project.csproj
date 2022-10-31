@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnemyFormPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EnemyFormPopup.Designer.cs">
+      <DependentUpon>EnemyFormPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmBattle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,6 +66,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="EnemyFormPopup.resx">
+      <DependentUpon>EnemyFormPopup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmBattle.resx">
       <DependentUpon>FrmBattle.cs</DependentUpon>
     </EmbeddedResource>
@@ -67,7 +76,7 @@
       <DependentUpon>FrmLevel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -120,6 +129,33 @@
       <Project>{F1E60F80-1868-4FE5-991B-FDDCFAF9B16B}</Project>
       <Name>MyGameLibrary</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\play_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\restart_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\pause_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\enemydead.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\playerdead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\timeout.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\win.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\gamepaused.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\pauseaudio.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

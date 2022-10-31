@@ -1,6 +1,10 @@
 ﻿using Fall2020_CSC403_Project.code;
+using Fall2020_CSC403_Project.Properties;
 using System;
 using System.Drawing;
+using System.Media;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Fall2020_CSC403_Project {
@@ -11,9 +15,18 @@ namespace Fall2020_CSC403_Project {
     private Enemy bossKoolaid;
     private Enemy enemyCheeto;
     private Character[] walls;
-
+    private TimeSpan span;
     private DateTime timeBegin;
     private FrmBattle frmBattle;
+    private int gametime;
+    private bool pause = true;
+    private bool gameover;
+    private bool timerup = false;
+    private bool poisondied = false;
+    private bool cheetodied = false;
+    private bool bossdied = false;
+    private bool playerdied = false;
+    private bool victoryflag=false;
 
     public FrmLevel() {
       InitializeComponent();
@@ -22,7 +35,7 @@ namespace Fall2020_CSC403_Project {
     private void FrmLevel_Load(object sender, EventArgs e) {
       const int PADDING = 7;
       const int NUM_WALLS = 13;
-
+      gametime = 75;
       player = new Player(CreatePosition(picPlayer), CreateCollider(picPlayer, PADDING));
       bossKoolaid = new Enemy(CreatePosition(picBossKoolAid), CreateCollider(picBossKoolAid, PADDING));
       enemyPoisonPacket = new Enemy(CreatePosition(picEnemyPoisonPacket), CreateCollider(picEnemyPoisonPacket, PADDING));
@@ -43,7 +56,8 @@ namespace Fall2020_CSC403_Project {
       }
 
       Game.player = player;
-      timeBegin = DateTime.Now;
+      timeBegin = DateTime.Now.AddSeconds(gametime);
+             
     }
 
     private Vector2 CreatePosition(PictureBox pic) {
@@ -58,89 +72,288 @@ namespace Fall2020_CSC403_Project {
     private void FrmLevel_KeyUp(object sender, KeyEventArgs e) {
       player.ResetMoveSpeed();
     }
+    private void tmrPlayerMove_Tick(object sender, EventArgs e)
+        {
+            if (pause)
+            {
+                // move player
+                player.Move();
 
-    private void tmrUpdateInGameTime_Tick(object sender, EventArgs e) {
-      TimeSpan span = DateTime.Now - timeBegin;
-      string time = span.ToString(@"hh\:mm\:ss");
-      lblInGameTime.Text = "Time: " + time.ToString();
-    }
+                // check collision with walls
+                if (HitAWall(player))
+                {
+                    player.MoveBack();
+                }
 
-    private void tmrPlayerMove_Tick(object sender, EventArgs e) {
-      // move player
-      player.Move();
+                // check collision with enemies
+                if (picEnemyPoisonPacket.Enabled == true & HitAChar(player, enemyPoisonPacket))
+                {
 
-      // check collision with walls
-      if (HitAWall(player)) {
-        player.MoveBack();
-      }
+                    Fight(enemyPoisonPacket);
+                }
+                else if (picEnemyCheeto.Enabled == true & HitAChar(player, enemyCheeto))
+                {
 
-      // check collision with enemies
-      if (HitAChar(player, enemyPoisonPacket)) {
-        Fight(enemyPoisonPacket);
-      }
-      else if (HitAChar(player, enemyCheeto)) {
-        Fight(enemyCheeto);
-      }
-      if (HitAChar(player, bossKoolaid)) {
-        Fight(bossKoolaid);
-      }
+                    Fight(enemyCheeto);
+                }
+                else if (picBossKoolAid.Enabled == true & HitAChar(player, bossKoolaid))
+                {
 
-      // update player's picture box
-      picPlayer.Location = new Point((int)player.Position.x, (int)player.Position.y);
-    }
-
-    private bool HitAWall(Character c) {
-      bool hitAWall = false;
-      for (int w = 0; w < walls.Length; w++) {
-        if (c.Collider.Intersects(walls[w].Collider)) {
-          hitAWall = true;
-          break;
+                    Fight(bossKoolaid);
+                }
+                pause = true;
+                // check character health 
+                if (playerdied == false & player.Health <= 0) 
+                { playerdied = true; playerHealth(); }
+                else if (poisondied == false & enemyPoisonPacket.Health <= 0)
+                { poisondied = true; poisonHealth(); }
+                else if (cheetodied == false & enemyCheeto.Health <= 0) 
+                { cheetodied = true; cheetoHealth(); }
+                else if (bossdied == false & bossKoolaid.Health <= 0)
+                { bossdied = true; bossHealth(); }
+                
+                if (victoryflag == false & bossdied == true && poisondied == true && cheetodied == true)
+                {
+                    victory();
+                    victoryflag = true;
+                }
+                // update player's picture box
+                picPlayer.Location = new Point((int)player.Position.x, (int)player.Position.y);
+            }
         }
+
+    private bool HitAWall(Character c)
+        {
+            bool hitAWall = false;
+
+            for (int w = 0; w < walls.Length; w++)
+            {
+                if (c.Collider.Intersects(walls[w].Collider))
+                {
+                    hitAWall = true;
+                    break;
+                }
+            }
+            return hitAWall;
+        }
+    
+    private bool HitAChar(Character you, Character other)
+        {
+            return you.Collider.Intersects(other.Collider);
+        }
+    
+    private void Fight(Enemy enemy)
+    {
+        
+        player.ResetMoveSpeed();
+        player.MoveBack();
+        frmlevelplaypause.Visible = false;
+        frmlevelrestart.Visible = false;
+    
+        frmBattle = FrmBattle.GetInstance(enemy);
+    
+        frmBattle.Show();
+    
+        if (enemy == bossKoolaid)
+        {
+            frmBattle.SetupForBossBattle();
+        }
+    
+    }
+
+    #region TimerControl
+    private void tmrUpdateInGameTime_Tick(object sender, EventArgs e) {
+      if (pause)
+      {
+          span = timeBegin - DateTime.Now;
+          string time = span.ToString(@"hh\:mm\:ss");
+          lblInGameTime.Text = "Time: " + time.ToString();
+          if (time.ToString() == "00:00:00") 
+          { 
+              timeUp();
+              applicationPlayPause(); 
+              controlWindowStatus(true, false);
+              frmBattle.Close();
+          }
       }
-      return hitAWall;
-    }
-
-    private bool HitAChar(Character you, Character other) {
-      return you.Collider.Intersects(other.Collider);
-    }
-
-    private void Fight(Enemy enemy) {
-      player.ResetMoveSpeed();
-      player.MoveBack();
-      frmBattle = FrmBattle.GetInstance(enemy);
-      frmBattle.Show();
-
-      if (enemy == bossKoolaid) {
-        frmBattle.SetupForBossBattle();
+      else{
+                timeBegin = DateTime.Now.Add(span);
       }
+      
     }
-
-    private void FrmLevel_KeyDown(object sender, KeyEventArgs e) {
-      switch (e.KeyCode) {
-        case Keys.Left:
-          player.GoLeft();
-          break;
-
-        case Keys.Right:
-          player.GoRight();
-          break;
-
-        case Keys.Up:
-          player.GoUp();
-          break;
-
-        case Keys.Down:
-          player.GoDown();
-          break;
-
-        default:
-          player.ResetMoveSpeed();
-          break;
-      }
+    private void timeUp()
+    {
+        SoundPlayer simpleSound = new SoundPlayer(Resources.timeoutaudio);
+        simpleSound.Play();
+        windowpic.Image = Resources.timeout;
     }
+    #endregion
 
-    private void lblInGameTime_Click(object sender, EventArgs e) {
+    #region HealthCheck
+    private void bossHealth()
+    {
+            if (bossKoolaid.Health <= 0)
+            {
+                bossdied = true;
+                picBossKoolAid.Visible = false;
+                picBossKoolAid.Enabled = false;
+                enemykill();
+                gamePanel();
+                
+
+            }
+            if (enemyCheeto.Health > 0 && enemyPoisonPacket.Health > 0) 
+            { 
+                enemyPanel();
+            }
+    }
+    private void cheetoHealth()
+    {
+            if (enemyCheeto.Health <= 0)
+            {
+                cheetodied = true;
+                picEnemyCheeto.Visible = false;
+                picEnemyCheeto.Enabled = false;
+                enemykill();
+                gamePanel();
+                enemyPanel();
+
+
+            }
+    }
+    private void poisonHealth()
+    {
+            if (enemyPoisonPacket.Health <= 0)
+            {
+                poisondied = true;
+                picEnemyPoisonPacket.Visible = false;
+                picEnemyPoisonPacket.Enabled = false;
+                enemykill();
+                gamePanel();
+                enemyPanel();
+
+            }
+    }
+    private void playerHealth()
+    {
+        playerdied = true;
+        playerDead();
+        windowpic.Image = Resources.playerdeadimg;
+        applicationPlayPause();
+        controlWindowStatus(true, false);
+        picPlayer.Visible = false;
+        picPlayer.Enabled = false;
+    }
+    #endregion
+
+    #region ConrtrolPanels
+    private void enemyPanel()
+        {
+            pause = false;
+            EnemyFormPopup enemyFormPopup = new EnemyFormPopup();
+            enemyFormPopup.Show();
+            Task.Run(() =>
+            {
+                Thread.Sleep(4000);
+                this.Invoke(new Action(() =>
+                {
+                    enemyFormPopup.Close();
+                    pause = true;
+                }));
+            });
+        }
+    private void gamePanel()
+    {
+        frmlevelplaypause.Visible = true;
+        frmlevelrestart.Visible = true;
 
     }
+    private void controlWindowStatus(bool v, bool v1)
+    {
+        controlswindow.Enabled = v;
+        controlswindow.Visible = v;
+        windowplaypause.Visible = v1;
+        windowplaypause.Enabled = v1;
+    }
+    private void playerDead()
+    {
+         SoundPlayer simpleSound = new SoundPlayer(Resources.playerdead);
+        simpleSound.Play();
+        windowpic.Image = Resources.win;
+    }
+    private void victory()
+    {
+            SoundPlayer simpleSound = new SoundPlayer(Resources.victoryaudio);
+            simpleSound.Play();
+            windowpic.Image = Resources.win;
+            controlWindowStatus(true, false);
+            pause = false;
+    }
+    private void enemykill()
+    {
+            SoundPlayer simpleSound = new SoundPlayer(Resources.enemydeadaudio);
+            simpleSound.Play();
+            windowpic.Image = Resources.enemydead;
+    }
+    public void locationchange(PictureBox picture)
+    {
+            picture.Location = new Point(0, 0);
+    }
+    private void FrmLevel_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                    player.GoLeft();
+                    break;
+
+                case Keys.Right:
+                    player.GoRight();
+                    break;
+
+                case Keys.Up:
+                    player.GoUp();
+                    break;
+
+                case Keys.Down:
+                    player.GoDown();
+                    break;
+
+                default:
+                    player.ResetMoveSpeed();
+                    break;
+            }
+        }
+    #endregion
+
+    #region PlaypauseControl
+    private void restarrt_Click(object sender, EventArgs e)
+    {
+        applicationRestart();
+    }
+    private void playpause_Click(object sender, EventArgs e)
+    {
+        applicationPlayPause();
+        controlWindowStatus(true,true);
+        SoundPlayer simpleSound = new SoundPlayer(Resources.pauseaudio);
+        simpleSound.Play();
+        windowpic.Image = Resources.gamepaused;
+    }
+    private void windowplaypause_Click(object sender, EventArgs e)
+    {
+        applicationPlayPause();
+        controlWindowStatus(false,true);
+    }
+   
+    public void applicationRestart()
+    {
+       Application.Restart();
+        
+    }
+    public void applicationPlayPause() {
+        pause = pause == true ? false : true;
+    }
+    #endregion
+    
   }
 }
