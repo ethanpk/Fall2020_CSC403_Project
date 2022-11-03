@@ -5,7 +5,11 @@ As part of those features team started focusing on basic required funtionality f
 ### SPIDER TEAM
 :feelsgood: Pujith :goberserk: Ashok :godmode: Grumeet :rage1: Yeswanth
 
-## Sprint 1 
+
+## Sprint 1
+<details><summary>Sprint 1 Documentation</summary>
+<p>
+
 
 **Planned Events for implementation**</br>
 
@@ -55,7 +59,38 @@ As part of those features team started focusing on basic required funtionality f
 - As a player, I can use extra Power Boosters during battle. </br>
 
 
-## Individual Developed feature summary
+<details><summary>Sprint1 Summary</summary>
+<p>
+
+
+
+### Class Status Summary:
+
+|Added Class| Modified Class|
+|---|---|
+|FrmLevel.cs| EnemyFormPopup.cs|
+|FrmLevel.Designer.cs| EnemyFormPopup.Designer.cs|
+
+Methods Status Summary:
+
+|Added Methods |Modified Methods|
+|---|---|
+|bossHealth| FrmLevel_Load|
+|cheetoHealth| tmrPlayerMove_Tick|
+|poisonHealth||
+|enemyPanel||
+|gamePanel||
+|controlWindowStatus||
+|playerDead||
+|victory||
+|restarrt_Click||
+|playpause_Click||
+|windowplaypause_Click||
+|applicationRestart||
+|applicationPlayPause||
+
+
+ ## Individual Developed feature summary
 
 <details><summary>As a player, I should be able to Pause or Restart the Game.</summary>
 <p>
@@ -163,6 +198,47 @@ Email Id: pne005@latech.edu</br>
 </p>
 </details>
 
+</p>
+</details>
+</p>
+</details>
+
+
+
+
+## Sprint 2
+<details><summary>Sprint 2 Documentation </summary>
+<p>
+
+
+**Planned Events for implementation**</br>
+
+- As a player, I should have access to different weapons.</br>
+- As a User, I should  experience Game sounds and animated characters.</br>
+- As a player, Health stats should always be visible to me.</br>
+- As a player, I'll need to play the game in the same window with good fight animations.</br>
+
+### Individual Assigned Features
+
+:rage1: Yeswanth </br>
+
+- As a player, I should have access to different weapons.</br>
+
+:godmode: Grumeet </br>
+
+- As a User, I should  experience Game sounds and animated characters.</br>
+
+:feelsgood: Pujit
+
+- As a player, Health stats should always be visible to me.</br>
+
+:goberserk: Ashok
+
+- As a player, I'll need to play the game in the same window with good fight animations.</br>
+
+
+</p>
+</details>
 
 
 
