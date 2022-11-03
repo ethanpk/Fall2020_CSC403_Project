@@ -55,6 +55,32 @@ As part of those features team started focusing on basic required funtionality f
 - As a player, I can use extra Power Boosters during battle. </br>
 
 
+**Individual Developed feature summary**
+
+Name: Chintagunta Ashok Vardhan Reddy
+CWID: 10400791
+Email Id: avc007@latech.edu
+Mobile: (318)-497-9732
+Feature:
+As a player, I should be able to Pause or Restart the Game.
+Game Resources:
+* Added game pause icon.
+* Added game play icon.
+* Added game Restart icon.
+* Added Pause Audio.
+Method Functionality:
+|-------------|----------------------|
+|Functionality| Methods|
+|Game Restart| applicationRestart
+restarrt_Click|
+|Game Play pause| applicationPlayPause
+playpause_Click|
+|Window Popup |windowplaypause_Click
+controlWindowStatus|
+|-------------|----------------------|
+
+
+
 
 
 
