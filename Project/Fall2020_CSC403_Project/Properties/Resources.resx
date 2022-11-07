@@ -196,8 +196,20 @@
   <data name="handgun" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\handgun.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Handgun1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\data\Handgun.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="handgunbullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\data\handgunbullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="machinegun" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\machinegun.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="machinegun1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\data\machinegun.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="mahinebullet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\data\mahinebullet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="wallbreak" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\data\wallbreak.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

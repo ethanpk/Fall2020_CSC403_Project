@@ -187,5 +187,17 @@
   <ItemGroup>
     <None Include="data\machinegun.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="data\Handgun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\handgunbullet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\machinegun.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\mahinebullet.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
