@@ -27,6 +27,7 @@ namespace Fall2020_CSC403_Project {
     private bool bossdied = false;
     private bool playerdied = false;
     private bool victoryflag=false;
+    const int NUM_WALLS = 15;
 
     public FrmLevel() {
       InitializeComponent();
@@ -34,7 +35,7 @@ namespace Fall2020_CSC403_Project {
 
     private void FrmLevel_Load(object sender, EventArgs e) {
       const int PADDING = 7;
-      const int NUM_WALLS = 13;
+      
       gametime = 75;
       player = new Player(CreatePosition(picPlayer), CreateCollider(picPlayer, PADDING));
       bossKoolaid = new Enemy(CreatePosition(picBossKoolAid), CreateCollider(picBossKoolAid, PADDING));
@@ -54,7 +55,7 @@ namespace Fall2020_CSC403_Project {
         PictureBox pic = Controls.Find("picWall" + w.ToString(), true)[0] as PictureBox;
         walls[w] = new Character(CreatePosition(pic), CreateCollider(pic, PADDING));
       }
-
+     
       Game.player = player;
       timeBegin = DateTime.Now.AddSeconds(gametime);
              
@@ -78,18 +79,19 @@ namespace Fall2020_CSC403_Project {
             {
                 // move player
                 player.Move();
-
+                
                 // check collision with walls
                 if (HitAWall(player))
                 {
                     player.MoveBack();
                 }
-
+              
                 // check collision with enemies
                 if (picEnemyPoisonPacket.Enabled == true & HitAChar(player, enemyPoisonPacket))
                 {
 
                     Fight(enemyPoisonPacket);
+
                 }
                 else if (picEnemyCheeto.Enabled == true & HitAChar(player, enemyCheeto))
                 {
@@ -122,18 +124,52 @@ namespace Fall2020_CSC403_Project {
             }
         }
 
-    private bool HitAWall(Character c)
+        private void destroyWall(PictureBox box)
+        {
+            if(box.Name== "picWall13")
+            {
+                box.Enabled = false;
+                box.Visible= false;
+
+            }
+            if (box.Name == "picWall11")
+            {
+                box.Enabled = false;
+                box.Visible = false;
+
+            }
+            if (box.Name == "picWall10")
+            {
+                
+                box.Enabled = false;
+                box.Visible = false;
+
+            }
+            if (box.Name == "picWall14")
+            {
+                box.Enabled = false;
+                box.Visible = false;
+
+            }
+        }
+
+        private bool HitAWall(Character c)
         {
             bool hitAWall = false;
-
+            //picWall13
+            
             for (int w = 0; w < walls.Length; w++)
             {
-                if (c.Collider.Intersects(walls[w].Collider))
+                PictureBox pic = Controls.Find("picWall" + w.ToString(), true)[0] as PictureBox;
+                if (c.Collider.Intersects(walls[w].Collider) && pic.Enabled==true)
                 {
                     hitAWall = true;
+                    destroyWall(pic);
                     break;
                 }
+               
             }
+           
             return hitAWall;
         }
     
@@ -173,7 +209,8 @@ namespace Fall2020_CSC403_Project {
               timeUp();
               applicationPlayPause(); 
               controlWindowStatus(true, false);
-              frmBattle.Close();
+              if(frmBattle != null)
+                frmBattle.Close();
           }
       }
       else{

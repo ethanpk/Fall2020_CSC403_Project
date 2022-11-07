@@ -24,14 +24,11 @@
     /// </summary>
     private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Panel rightdockpanel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLevel));
             this.lblInGameTime = new System.Windows.Forms.Label();
             this.tmrUpdateInGameTime = new System.Windows.Forms.Timer(this.components);
             this.tmrPlayerMove = new System.Windows.Forms.Timer(this.components);
-            this.controlswindow = new System.Windows.Forms.Panel();
-            this.rightdockpanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.centerdockpanel = new System.Windows.Forms.Panel();
-            this.leftdockpanel = new System.Windows.Forms.Panel();
             this.frmlevelrestart = new System.Windows.Forms.PictureBox();
             this.frmlevelplaypause = new System.Windows.Forms.PictureBox();
             this.picWall11 = new System.Windows.Forms.PictureBox();
@@ -40,10 +37,7 @@
             this.picWall7 = new System.Windows.Forms.PictureBox();
             this.picWall1 = new System.Windows.Forms.PictureBox();
             this.picWall0 = new System.Windows.Forms.PictureBox();
-            this.picWall10 = new System.Windows.Forms.PictureBox();
-            this.picWall9 = new System.Windows.Forms.PictureBox();
             this.picWall6 = new System.Windows.Forms.PictureBox();
-            this.picWall12 = new System.Windows.Forms.PictureBox();
             this.picWall4 = new System.Windows.Forms.PictureBox();
             this.picWall5 = new System.Windows.Forms.PictureBox();
             this.picEnemyCheeto = new System.Windows.Forms.PictureBox();
@@ -51,10 +45,18 @@
             this.picWall3 = new System.Windows.Forms.PictureBox();
             this.picBossKoolAid = new System.Windows.Forms.PictureBox();
             this.picPlayer = new System.Windows.Forms.PictureBox();
-            this.windowrestart = new System.Windows.Forms.PictureBox();
-            this.windowplaypause = new System.Windows.Forms.PictureBox();
+            this.picWall14 = new System.Windows.Forms.PictureBox();
+            this.picWall10 = new System.Windows.Forms.PictureBox();
+            this.picWall9 = new System.Windows.Forms.PictureBox();
+            this.picWall13 = new System.Windows.Forms.PictureBox();
             this.windowpic = new System.Windows.Forms.PictureBox();
-            this.controlswindow.SuspendLayout();
+            this.leftdockpanel = new System.Windows.Forms.Panel();
+            this.windowplaypause = new System.Windows.Forms.PictureBox();
+            this.centerdockpanel = new System.Windows.Forms.Panel();
+            this.windowrestart = new System.Windows.Forms.PictureBox();
+            this.controlswindow = new System.Windows.Forms.Panel();
+            this.picWall12 = new System.Windows.Forms.PictureBox();
+            rightdockpanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.frmlevelrestart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.frmlevelplaypause)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWall11)).BeginInit();
@@ -63,10 +65,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picWall7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWall1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWall0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picWall10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picWall9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWall6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picWall12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWall4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWall5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEnemyCheeto)).BeginInit();
@@ -74,10 +73,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.picWall3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBossKoolAid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPlayer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windowrestart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windowplaypause)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picWall14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picWall10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picWall9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picWall13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.windowpic)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.windowplaypause)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.windowrestart)).BeginInit();
+            this.controlswindow.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picWall12)).BeginInit();
             this.SuspendLayout();
+            // 
+            // rightdockpanel
+            // 
+            rightdockpanel.Dock = System.Windows.Forms.DockStyle.Right;
+            rightdockpanel.Location = new System.Drawing.Point(895, 516);
+            rightdockpanel.Name = "rightdockpanel";
+            rightdockpanel.Size = new System.Drawing.Size(281, 210);
+            rightdockpanel.TabIndex = 7;
             // 
             // lblInGameTime
             // 
@@ -101,47 +114,6 @@
             this.tmrPlayerMove.Enabled = true;
             this.tmrPlayerMove.Interval = 10;
             this.tmrPlayerMove.Tick += new System.EventHandler(this.tmrPlayerMove_Tick);
-            // 
-            // controlswindow
-            // 
-            this.controlswindow.BackColor = System.Drawing.Color.Transparent;
-            this.controlswindow.Controls.Add(this.rightdockpanel);
-            this.controlswindow.Controls.Add(this.windowrestart);
-            this.controlswindow.Controls.Add(this.centerdockpanel);
-            this.controlswindow.Controls.Add(this.windowplaypause);
-            this.controlswindow.Controls.Add(this.leftdockpanel);
-            this.controlswindow.Controls.Add(this.windowpic);
-            this.controlswindow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.controlswindow.Enabled = false;
-            this.controlswindow.Location = new System.Drawing.Point(0, 0);
-            this.controlswindow.Name = "controlswindow";
-            this.controlswindow.Size = new System.Drawing.Size(1176, 726);
-            this.controlswindow.TabIndex = 20;
-            this.controlswindow.Visible = false;
-            // 
-            // rightdockpanel
-            // 
-            this.rightdockpanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rightdockpanel.Location = new System.Drawing.Point(895, 516);
-            this.rightdockpanel.Name = "rightdockpanel";
-            this.rightdockpanel.Size = new System.Drawing.Size(281, 210);
-            this.rightdockpanel.TabIndex = 7;
-            // 
-            // centerdockpanel
-            // 
-            this.centerdockpanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.centerdockpanel.Location = new System.Drawing.Point(470, 516);
-            this.centerdockpanel.Name = "centerdockpanel";
-            this.centerdockpanel.Size = new System.Drawing.Size(231, 210);
-            this.centerdockpanel.TabIndex = 5;
-            // 
-            // leftdockpanel
-            // 
-            this.leftdockpanel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.leftdockpanel.Location = new System.Drawing.Point(0, 516);
-            this.leftdockpanel.Name = "leftdockpanel";
-            this.leftdockpanel.Size = new System.Drawing.Size(291, 210);
-            this.leftdockpanel.TabIndex = 3;
             // 
             // frmlevelrestart
             // 
@@ -175,9 +147,9 @@
             this.picWall11.BackColor = System.Drawing.Color.Transparent;
             this.picWall11.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.wall;
             this.picWall11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picWall11.Location = new System.Drawing.Point(551, 425);
+            this.picWall11.Location = new System.Drawing.Point(551, 474);
             this.picWall11.Name = "picWall11";
-            this.picWall11.Size = new System.Drawing.Size(164, 232);
+            this.picWall11.Size = new System.Drawing.Size(114, 183);
             this.picWall11.TabIndex = 17;
             this.picWall11.TabStop = false;
             // 
@@ -236,28 +208,6 @@
             this.picWall0.TabIndex = 12;
             this.picWall0.TabStop = false;
             // 
-            // picWall10
-            // 
-            this.picWall10.BackColor = System.Drawing.Color.Transparent;
-            this.picWall10.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.wall;
-            this.picWall10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picWall10.Location = new System.Drawing.Point(653, 89);
-            this.picWall10.Name = "picWall10";
-            this.picWall10.Size = new System.Drawing.Size(228, 162);
-            this.picWall10.TabIndex = 11;
-            this.picWall10.TabStop = false;
-            // 
-            // picWall9
-            // 
-            this.picWall9.BackColor = System.Drawing.Color.Transparent;
-            this.picWall9.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.wall;
-            this.picWall9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picWall9.Location = new System.Drawing.Point(266, 154);
-            this.picWall9.Name = "picWall9";
-            this.picWall9.Size = new System.Drawing.Size(197, 118);
-            this.picWall9.TabIndex = 10;
-            this.picWall9.TabStop = false;
-            // 
             // picWall6
             // 
             this.picWall6.BackColor = System.Drawing.Color.Transparent;
@@ -268,17 +218,6 @@
             this.picWall6.Size = new System.Drawing.Size(358, 67);
             this.picWall6.TabIndex = 9;
             this.picWall6.TabStop = false;
-            // 
-            // picWall12
-            // 
-            this.picWall12.BackColor = System.Drawing.Color.Transparent;
-            this.picWall12.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.wall;
-            this.picWall12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picWall12.Location = new System.Drawing.Point(890, 397);
-            this.picWall12.Name = "picWall12";
-            this.picWall12.Size = new System.Drawing.Size(203, 113);
-            this.picWall12.TabIndex = 8;
-            this.picWall12.TabStop = false;
             // 
             // picWall4
             // 
@@ -307,7 +246,7 @@
             this.picEnemyCheeto.BackColor = System.Drawing.Color.Transparent;
             this.picEnemyCheeto.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.enemy_cheetos;
             this.picEnemyCheeto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.picEnemyCheeto.Location = new System.Drawing.Point(838, 540);
+            this.picEnemyCheeto.Location = new System.Drawing.Point(1000, 530);
             this.picEnemyCheeto.Name = "picEnemyCheeto";
             this.picEnemyCheeto.Size = new System.Drawing.Size(64, 107);
             this.picEnemyCheeto.TabIndex = 5;
@@ -331,7 +270,7 @@
             this.picWall3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.picWall3.Location = new System.Drawing.Point(2, 388);
             this.picWall3.Name = "picWall3";
-            this.picWall3.Size = new System.Drawing.Size(358, 67);
+            this.picWall3.Size = new System.Drawing.Size(314, 67);
             this.picWall3.TabIndex = 3;
             this.picWall3.TabStop = false;
             // 
@@ -357,20 +296,69 @@
             this.picPlayer.TabIndex = 0;
             this.picPlayer.TabStop = false;
             // 
-            // windowrestart
+            // picWall14
             // 
-            this.windowrestart.BackColor = System.Drawing.Color.Transparent;
-            this.windowrestart.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.restart_button;
-            this.windowrestart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.windowrestart.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.windowrestart.Dock = System.Windows.Forms.DockStyle.Left;
-            this.windowrestart.Location = new System.Drawing.Point(701, 516);
-            this.windowrestart.Name = "windowrestart";
-            this.windowrestart.Size = new System.Drawing.Size(191, 210);
-            this.windowrestart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.windowrestart.TabIndex = 6;
-            this.windowrestart.TabStop = false;
-            this.windowrestart.Click += new System.EventHandler(this.restarrt_Click);
+            this.picWall14.BackColor = System.Drawing.Color.Transparent;
+            this.picWall14.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.wall;
+            this.picWall14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picWall14.Location = new System.Drawing.Point(662, 388);
+            this.picWall14.Name = "picWall14";
+            this.picWall14.Size = new System.Drawing.Size(230, 67);
+            this.picWall14.TabIndex = 12;
+            this.picWall14.TabStop = false;
+            // 
+            // picWall10
+            // 
+            this.picWall10.BackColor = System.Drawing.Color.Transparent;
+            this.picWall10.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.wall;
+            this.picWall10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picWall10.Location = new System.Drawing.Point(551, 64);
+            this.picWall10.Name = "picWall10";
+            this.picWall10.Size = new System.Drawing.Size(114, 237);
+            this.picWall10.TabIndex = 11;
+            this.picWall10.TabStop = false;
+            // 
+            // picWall9
+            // 
+            this.picWall9.BackColor = System.Drawing.Color.Transparent;
+            this.picWall9.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.wall;
+            this.picWall9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picWall9.Location = new System.Drawing.Point(551, 298);
+            this.picWall9.Name = "picWall9";
+            this.picWall9.Size = new System.Drawing.Size(114, 179);
+            this.picWall9.TabIndex = 10;
+            this.picWall9.TabStop = false;
+            // 
+            // picWall13
+            // 
+            this.picWall13.BackColor = System.Drawing.Color.Transparent;
+            this.picWall13.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.wall;
+            this.picWall13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picWall13.Location = new System.Drawing.Point(316, 388);
+            this.picWall13.Name = "picWall13";
+            this.picWall13.Size = new System.Drawing.Size(236, 67);
+            this.picWall13.TabIndex = 13;
+            this.picWall13.TabStop = false;
+            // 
+            // windowpic
+            // 
+            this.windowpic.BackColor = System.Drawing.Color.IndianRed;
+            this.windowpic.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.gamepaused;
+            this.windowpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.windowpic.Dock = System.Windows.Forms.DockStyle.Top;
+            this.windowpic.Location = new System.Drawing.Point(0, 0);
+            this.windowpic.Name = "windowpic";
+            this.windowpic.Size = new System.Drawing.Size(1176, 516);
+            this.windowpic.TabIndex = 2;
+            this.windowpic.TabStop = false;
+            // 
+            // leftdockpanel
+            // 
+            this.leftdockpanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.leftdockpanel.Location = new System.Drawing.Point(0, 516);
+            this.leftdockpanel.Name = "leftdockpanel";
+            this.leftdockpanel.Size = new System.Drawing.Size(291, 210);
+            this.leftdockpanel.TabIndex = 3;
             // 
             // windowplaypause
             // 
@@ -387,17 +375,55 @@
             this.windowplaypause.TabStop = false;
             this.windowplaypause.Click += new System.EventHandler(this.windowplaypause_Click);
             // 
-            // windowpic
+            // centerdockpanel
             // 
-            this.windowpic.BackColor = System.Drawing.Color.IndianRed;
-            this.windowpic.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.gamepaused;
-            this.windowpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.windowpic.Dock = System.Windows.Forms.DockStyle.Top;
-            this.windowpic.Location = new System.Drawing.Point(0, 0);
-            this.windowpic.Name = "windowpic";
-            this.windowpic.Size = new System.Drawing.Size(1176, 516);
-            this.windowpic.TabIndex = 2;
-            this.windowpic.TabStop = false;
+            this.centerdockpanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.centerdockpanel.Location = new System.Drawing.Point(470, 516);
+            this.centerdockpanel.Name = "centerdockpanel";
+            this.centerdockpanel.Size = new System.Drawing.Size(231, 210);
+            this.centerdockpanel.TabIndex = 5;
+            // 
+            // windowrestart
+            // 
+            this.windowrestart.BackColor = System.Drawing.Color.Transparent;
+            this.windowrestart.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.restart_button;
+            this.windowrestart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.windowrestart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.windowrestart.Dock = System.Windows.Forms.DockStyle.Left;
+            this.windowrestart.Location = new System.Drawing.Point(701, 516);
+            this.windowrestart.Name = "windowrestart";
+            this.windowrestart.Size = new System.Drawing.Size(191, 210);
+            this.windowrestart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.windowrestart.TabIndex = 6;
+            this.windowrestart.TabStop = false;
+            this.windowrestart.Click += new System.EventHandler(this.restarrt_Click);
+            // 
+            // controlswindow
+            // 
+            this.controlswindow.BackColor = System.Drawing.Color.Transparent;
+            this.controlswindow.Controls.Add(rightdockpanel);
+            this.controlswindow.Controls.Add(this.windowrestart);
+            this.controlswindow.Controls.Add(this.centerdockpanel);
+            this.controlswindow.Controls.Add(this.windowplaypause);
+            this.controlswindow.Controls.Add(this.leftdockpanel);
+            this.controlswindow.Controls.Add(this.windowpic);
+            this.controlswindow.Enabled = false;
+            this.controlswindow.Location = new System.Drawing.Point(0, 0);
+            this.controlswindow.Name = "controlswindow";
+            this.controlswindow.Size = new System.Drawing.Size(1176, 726);
+            this.controlswindow.TabIndex = 20;
+            this.controlswindow.Visible = false;
+            // 
+            // picWall12
+            // 
+            this.picWall12.BackColor = System.Drawing.Color.Transparent;
+            this.picWall12.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.wall;
+            this.picWall12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.picWall12.Location = new System.Drawing.Point(891, 388);
+            this.picWall12.Name = "picWall12";
+            this.picWall12.Size = new System.Drawing.Size(203, 67);
+            this.picWall12.TabIndex = 8;
+            this.picWall12.TabStop = false;
             // 
             // FrmLevel
             // 
@@ -405,27 +431,29 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1176, 726);
-            this.Controls.Add(this.controlswindow);
             this.Controls.Add(this.frmlevelrestart);
             this.Controls.Add(this.frmlevelplaypause);
-            this.Controls.Add(this.picWall11);
             this.Controls.Add(this.picWall2);
             this.Controls.Add(this.picWall8);
             this.Controls.Add(this.picWall7);
             this.Controls.Add(this.lblInGameTime);
             this.Controls.Add(this.picWall1);
             this.Controls.Add(this.picWall0);
-            this.Controls.Add(this.picWall10);
-            this.Controls.Add(this.picWall9);
             this.Controls.Add(this.picWall6);
-            this.Controls.Add(this.picWall12);
             this.Controls.Add(this.picWall4);
             this.Controls.Add(this.picWall5);
-            this.Controls.Add(this.picEnemyCheeto);
             this.Controls.Add(this.picEnemyPoisonPacket);
             this.Controls.Add(this.picWall3);
             this.Controls.Add(this.picBossKoolAid);
+            this.Controls.Add(this.picEnemyCheeto);
             this.Controls.Add(this.picPlayer);
+            this.Controls.Add(this.picWall13);
+            this.Controls.Add(this.picWall9);
+            this.Controls.Add(this.picWall10);
+            this.Controls.Add(this.picWall14);
+            this.Controls.Add(this.picWall12);
+            this.Controls.Add(this.picWall11);
+            this.Controls.Add(this.controlswindow);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -435,8 +463,6 @@
             this.Load += new System.EventHandler(this.FrmLevel_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmLevel_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FrmLevel_KeyUp);
-            this.controlswindow.ResumeLayout(false);
-            this.controlswindow.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frmlevelrestart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.frmlevelplaypause)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWall11)).EndInit();
@@ -445,10 +471,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picWall7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWall1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWall0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picWall10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picWall9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWall6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picWall12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWall4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWall5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEnemyCheeto)).EndInit();
@@ -456,9 +479,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.picWall3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBossKoolAid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPlayer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windowrestart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windowplaypause)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picWall14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picWall10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picWall9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picWall13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.windowpic)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.windowplaypause)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.windowrestart)).EndInit();
+            this.controlswindow.ResumeLayout(false);
+            this.controlswindow.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picWall12)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -476,10 +506,7 @@
     private System.Windows.Forms.PictureBox picEnemyCheeto;
     private System.Windows.Forms.PictureBox picWall5;
     private System.Windows.Forms.PictureBox picWall4;
-    private System.Windows.Forms.PictureBox picWall12;
     private System.Windows.Forms.PictureBox picWall6;
-    private System.Windows.Forms.PictureBox picWall9;
-    private System.Windows.Forms.PictureBox picWall10;
     private System.Windows.Forms.PictureBox picWall0;
     private System.Windows.Forms.PictureBox picWall7;
     private System.Windows.Forms.PictureBox picWall8;
@@ -488,13 +515,17 @@
     private System.Windows.Forms.PictureBox picWall11;
         private System.Windows.Forms.PictureBox frmlevelplaypause;
         private System.Windows.Forms.PictureBox frmlevelrestart;
-        private System.Windows.Forms.Panel controlswindow;
+        private System.Windows.Forms.PictureBox picWall14;
+        private System.Windows.Forms.PictureBox picWall10;
+        private System.Windows.Forms.PictureBox picWall9;
+        private System.Windows.Forms.PictureBox picWall13;
         private System.Windows.Forms.PictureBox windowpic;
-        private System.Windows.Forms.PictureBox windowrestart;
-        private System.Windows.Forms.PictureBox windowplaypause;
-        private System.Windows.Forms.FlowLayoutPanel rightdockpanel;
-        private System.Windows.Forms.Panel centerdockpanel;
         private System.Windows.Forms.Panel leftdockpanel;
+        private System.Windows.Forms.PictureBox windowplaypause;
+        private System.Windows.Forms.Panel centerdockpanel;
+        private System.Windows.Forms.PictureBox windowrestart;
+        private System.Windows.Forms.Panel controlswindow;
+        private System.Windows.Forms.PictureBox picWall12;
     }
 }
 
