@@ -28,7 +28,7 @@ namespace Fall2020_CSC403_Project {
     private bool playerdied = false;
     private bool victoryflag=false;
     const int NUM_WALLS = 15;
-        SoundPlayer sound;
+    SoundPlayer sound;
     public FrmLevel() {
       InitializeComponent();
     }
@@ -151,19 +151,20 @@ namespace Fall2020_CSC403_Project {
 
         public void wallBreak(PictureBox box)
         {
-                    sound = new SoundPlayer(Resources.wallbreak);
-                    sound.Play();
-              Thread.Sleep(1000);
-                
-                    box.Enabled = false;
-                    box.Visible = false;
+           
+            sound.Play();
+            box.Enabled = false;
+            box.Visible = false;
+                   
+            
 
         }
         private bool HitAWall(Character c)
         {
             bool hitAWall = false;
             //picWall13
-            
+           sound = new SoundPlayer(Resources.wallbreak);
+           sound.Load();
             for (int w = 0; w < walls.Length; w++)
             {
                 PictureBox pic = Controls.Find("picWall" + w.ToString(), true)[0] as PictureBox;
