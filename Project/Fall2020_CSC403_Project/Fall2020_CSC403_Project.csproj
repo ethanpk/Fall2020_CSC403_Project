@@ -169,5 +169,23 @@
   <ItemGroup>
     <None Include="data\victoryaudio.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="data\wallbreak.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\Collapse of Lust.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\Escape.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\Fall of Anger.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\handgun.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\machinegun.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
