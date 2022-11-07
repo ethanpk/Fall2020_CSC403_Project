@@ -355,6 +355,8 @@ namespace Fall2020_CSC403_Project {
                 case Keys.Down:
                     player.GoDown();
                     break;
+                case Keys.Q:
+                    //Write Health Code
 
                 default:
                     player.ResetMoveSpeed();
