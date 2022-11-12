@@ -28,14 +28,16 @@ namespace Fall2020_CSC403_Project {
     private bool playerdied = false;
     private bool victoryflag=false;
     const int NUM_WALLS = 15;
-    SoundPlayer sound;
+    SoundPlayer sound  = new SoundPlayer(Resources.wallbreak);
+        
+
     public FrmLevel() {
       InitializeComponent();
     }
 
     private void FrmLevel_Load(object sender, EventArgs e) {
       const int PADDING = 7;
-      
+      sound.Load();
       gametime = 75;
       player = new Player(CreatePosition(picPlayer), CreateCollider(picPlayer, PADDING));
       bossKoolaid = new Enemy(CreatePosition(picBossKoolAid), CreateCollider(picBossKoolAid, PADDING));
@@ -45,7 +47,7 @@ namespace Fall2020_CSC403_Project {
       bossKoolaid.Img = picBossKoolAid.BackgroundImage;
       enemyPoisonPacket.Img = picEnemyPoisonPacket.BackgroundImage;
       enemyCheeto.Img = picEnemyCheeto.BackgroundImage;
-
+   
       bossKoolaid.Color = Color.Red;
       enemyPoisonPacket.Color = Color.Green;
       enemyCheeto.Color = Color.FromArgb(255, 245, 161);
@@ -153,6 +155,7 @@ namespace Fall2020_CSC403_Project {
         {
            
             sound.Play();
+
             box.Enabled = false;
             box.Visible = false;
                    
@@ -163,7 +166,7 @@ namespace Fall2020_CSC403_Project {
         {
             bool hitAWall = false;
             //picWall13
-           sound = new SoundPlayer(Resources.wallbreak);
+          
            sound.Load();
             for (int w = 0; w < walls.Length; w++)
             {
