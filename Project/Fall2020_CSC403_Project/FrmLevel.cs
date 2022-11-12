@@ -44,11 +44,11 @@ namespace Fall2020_CSC403_Project {
       enemyPoisonPacket = new Enemy(CreatePosition(picEnemyPoisonPacket), CreateCollider(picEnemyPoisonPacket, PADDING));
       enemyCheeto = new Enemy(CreatePosition(picEnemyCheeto), CreateCollider(picEnemyCheeto, PADDING));
 
-            picEnemyCheeto.Location = new Point((int)cheetoHealthbar.Location.X, (int)cheetoHealthbar.Location.Y - cheetoHealthbar.Size.Height-30) ;// cheetoHealthbar.Location;
+      picEnemyCheeto.Location = new Point(951, 497) ;// cheetoHealthbar.Location;
       bossKoolaid.Img = picBossKoolAid.BackgroundImage;
       enemyPoisonPacket.Img = picEnemyPoisonPacket.BackgroundImage;
       enemyCheeto.Img = picEnemyCheeto.BackgroundImage;
-   
+            //951, 497
       bossKoolaid.Color = Color.Red;
       enemyPoisonPacket.Color = Color.Green;
       enemyCheeto.Color = Color.FromArgb(255, 245, 161);
@@ -91,12 +91,27 @@ namespace Fall2020_CSC403_Project {
                 {
                     player.MoveBack();
                 }
-
-
-                // check collision with enemies
-                if (player.Position.x <= 400 && player.Position.y <= 343) //300, 281
+                //426, 494
+                if (player.Position.x <= 426 && player.Position.y >= 494) //300, 281
                 {
-
+                    poisionHealthbar.Visible = false;
+                    poisionHealthbar.Enabled = false;
+                    cheetoHealthbar.Visible = false;
+                    cheetoHealthbar.Enabled = false;
+                    bossHealthbar.Visible = false;
+                    bossHealthbar.Enabled = false;
+                    regeneratewalls();
+                }
+                    // check collision with enemies
+                if (player.Position.x <= 500 && player.Position.y <= 233) //300, 281
+                {
+                    poisionHealthbar.Visible = true;
+                    poisionHealthbar.Enabled = true;
+                    cheetoHealthbar.Visible = false;
+                    cheetoHealthbar.Enabled = false;
+                    bossHealthbar.Visible = false;
+                    bossHealthbar.Enabled = false;
+                    regeneratewalls();
                     if (picEnemyPoisonPacket.Enabled == true & HitAChar(player, enemyPoisonPacket))
                     {
 
@@ -104,16 +119,30 @@ namespace Fall2020_CSC403_Project {
 
                     }
                 }
-                if (player.Position.x >= 687)
+                if (player.Position.x >= 687 && player.Position.y >= 474)
                 {
+                    poisionHealthbar.Visible = false;
+                    poisionHealthbar.Enabled = false;
+                    cheetoHealthbar.Visible = true;
+                    cheetoHealthbar.Enabled = true;
+                    bossHealthbar.Visible = false;
+                    bossHealthbar.Enabled = false;
+                    regeneratewalls();
                     if (picEnemyCheeto.Enabled == true & HitAChar(player, enemyCheeto))
                     {
 
                         Fight(enemyCheeto);
                     }
                 }
-                if (player.Position.x >= 687 && player.Position.y <= 298)
+                if (player.Position.x >= 687 && player.Position.y <= 270)
                 {
+                    poisionHealthbar.Visible = false;
+                    poisionHealthbar.Enabled = false;
+                    cheetoHealthbar.Visible = false;
+                    cheetoHealthbar.Enabled = false;
+                    bossHealthbar.Visible = true;
+                    bossHealthbar.Enabled = true;
+                    regeneratewalls();
                     if (picBossKoolAid.Enabled == true & HitAChar(player, bossKoolaid))
                     {
 
@@ -139,7 +168,19 @@ namespace Fall2020_CSC403_Project {
                 
             }
         }
+        private void regeneratewalls()
+        {
+            picWall13.Enabled = true;
+            picWall13.Visible = true;
+            picWall14.Enabled = true;
+            picWall14.Visible = true;
+            picWall11.Enabled = true;
+            picWall11.Visible = true;
+            picWall10.Enabled = true;
+            picWall10.Visible = true;
+           
 
+        }
         private void destroyWall(PictureBox box)
         {
 
