@@ -44,6 +44,7 @@ namespace Fall2020_CSC403_Project {
       enemyPoisonPacket = new Enemy(CreatePosition(picEnemyPoisonPacket), CreateCollider(picEnemyPoisonPacket, PADDING));
       enemyCheeto = new Enemy(CreatePosition(picEnemyCheeto), CreateCollider(picEnemyCheeto, PADDING));
 
+            picEnemyCheeto.Location = new Point((int)cheetoHealthbar.Location.X, (int)cheetoHealthbar.Location.Y - cheetoHealthbar.Size.Height-30) ;// cheetoHealthbar.Location;
       bossKoolaid.Img = picBossKoolAid.BackgroundImage;
       enemyPoisonPacket.Img = picEnemyPoisonPacket.BackgroundImage;
       enemyCheeto.Img = picEnemyCheeto.BackgroundImage;
@@ -79,6 +80,9 @@ namespace Fall2020_CSC403_Project {
         {
             if (pause)
             {
+                // update player's picture box
+                picPlayer.Location = new Point((int)player.Position.x, (int)player.Position.y);
+                playerHealthBar.Location = new Point((int)player.Position.x, (int)player.Position.y + 106);
                 // move player
                 player.Move();
                 
@@ -87,23 +91,34 @@ namespace Fall2020_CSC403_Project {
                 {
                     player.MoveBack();
                 }
-              
+
+
                 // check collision with enemies
-                if (picEnemyPoisonPacket.Enabled == true & HitAChar(player, enemyPoisonPacket))
+                if (player.Position.x <= 400 && player.Position.y <= 343) //300, 281
                 {
 
-                    Fight(enemyPoisonPacket);
+                    if (picEnemyPoisonPacket.Enabled == true & HitAChar(player, enemyPoisonPacket))
+                    {
 
+                        Fight(enemyPoisonPacket);
+
+                    }
                 }
-                else if (picEnemyCheeto.Enabled == true & HitAChar(player, enemyCheeto))
+                if (player.Position.x >= 687)
                 {
+                    if (picEnemyCheeto.Enabled == true & HitAChar(player, enemyCheeto))
+                    {
 
-                    Fight(enemyCheeto);
+                        Fight(enemyCheeto);
+                    }
                 }
-                else if (picBossKoolAid.Enabled == true & HitAChar(player, bossKoolaid))
+                if (player.Position.x >= 687 && player.Position.y <= 298)
                 {
+                    if (picBossKoolAid.Enabled == true & HitAChar(player, bossKoolaid))
+                    {
 
-                    Fight(bossKoolaid);
+                        Fight(bossKoolaid);
+                    }
                 }
                 pause = true;
                 // check character health 
@@ -121,8 +136,7 @@ namespace Fall2020_CSC403_Project {
                     victory();
                     victoryflag = true;
                 }
-                // update player's picture box
-                picPlayer.Location = new Point((int)player.Position.x, (int)player.Position.y);
+                
             }
         }
 
@@ -365,18 +379,37 @@ namespace Fall2020_CSC403_Project {
                 case Keys.Down:
                     player.GoDown();
                     break;
+                case Keys.H:
+                   // statusHealth();
+                    break;
                 case Keys.Q:
-                    //Write Health Code
-
+                    statusHealth();
+                    break;
                 default:
                     player.ResetMoveSpeed();
                     break;
             }
         }
-    #endregion
 
-    #region PlaypauseControl
-    private void restarrt_Click(object sender, EventArgs e)
+        private void statusHealth()
+        {
+            playerHealthBar.Enabled = true;
+            playerHealthBar.Visible = true;
+
+            Task.Run(() =>
+            {
+                Thread.Sleep(500);
+                this.Invoke(new Action(() =>
+                {
+                    playerHealthBar.Enabled = false;
+                    playerHealthBar.Visible = false;
+                }));
+            });
+                  }
+        #endregion
+
+        #region PlaypauseControl
+        private void restarrt_Click(object sender, EventArgs e)
     {
         applicationRestart();
     }
@@ -402,7 +435,23 @@ namespace Fall2020_CSC403_Project {
     public void applicationPlayPause() {
         pause = pause == true ? false : true;
     }
-    #endregion
-    
-  }
+        #endregion
+
+        private void windowpic_Click(object sender, EventArgs e)
+        {
+            MouseEventArgs me = (MouseEventArgs)e;
+            Point coordinates = me.Location;
+            if (241 < coordinates.X && coordinates.X < 349 && 138 < coordinates.Y && coordinates.Y < 187)
+            {
+                Application.Restart();
+
+            }
+        }
+
+        private void centerdockpanel_Paint(object sender, PaintEventArgs e)
+        {
+            
+
+        }
+    }
 }
