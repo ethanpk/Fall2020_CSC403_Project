@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace Fall2020_CSC403_Project {
   public partial class FrmLevel : Form {
     private Player player;
-
+    
     private Enemy enemyPoisonPacket;
     private Enemy bossKoolaid;
     private Enemy enemyCheeto;
@@ -28,9 +28,13 @@ namespace Fall2020_CSC403_Project {
     private bool playerdied = false;
     private bool victoryflag=false;
     const int NUM_WALLS = 15;
-    SoundPlayer sound  = new SoundPlayer(Resources.wallbreak);
-        
+    private bool speedstatus = false;
+    private int efight;
+    private bool trigger=false;
 
+
+
+    SoundPlayer sound  = new SoundPlayer(Resources.wallbreak);
     public FrmLevel() {
       InitializeComponent();
     }
@@ -80,94 +84,159 @@ namespace Fall2020_CSC403_Project {
         {
             if (pause)
             {
-                // update player's picture box
-                picPlayer.Location = new Point((int)player.Position.x, (int)player.Position.y);
-                playerHealthBar.Location = new Point((int)player.Position.x, (int)player.Position.y + 106);
-                // move player
-                player.Move();
+                if (trigger == false)
+                {
+                    // update player's picture box
+                    picPlayer.Location = new Point((int)player.Position.x, (int)player.Position.y);
+                    playerHealthBar.Location = new Point((int)player.Position.x, (int)player.Position.y + 106);
+                    // move player
+                    player.Move();
+
+                    // check collision with walls
+                    if (HitAWall(player))
+                    {
+                        player.MoveBack();
+                    }
+                }
+
+                    //426, 494
+                    if (player.Position.x <= 426 && player.Position.y >= 494) //300, 281
+                    {
+                        poisionHealthbar.Visible = false;
+                        poisionHealthbar.Enabled = false;
+                        cheetoHealthbar.Visible = false;
+                        cheetoHealthbar.Enabled = false;
+                        bossHealthbar.Visible = false;
+                        bossHealthbar.Enabled = false;
+                        regeneratewalls();
+                    }
+                    
+                        // check collision with enemies
+                        if (player.Position.x <= 500 && player.Position.y <= 233) //300, 281
+                        {
+                            poisionHealthbar.Visible = true;
+                            poisionHealthbar.Enabled = true;
+                            cheetoHealthbar.Visible = false;
+                            cheetoHealthbar.Enabled = false;
+                            bossHealthbar.Visible = false;
+                            bossHealthbar.Enabled = false;
+                            regeneratewalls();
+                            if (picEnemyPoisonPacket.Enabled == true)
+                            {
+                                trigger = true;
+                                fightChamber(enemyPoisonPacket);
+                                //Fight(enemyPoisonPacket);
+
+                            }
+                        }
+                        if (player.Position.x >= 687 && player.Position.y >= 474)
+                        {
+                            poisionHealthbar.Visible = false;
+                            poisionHealthbar.Enabled = false;
+                            cheetoHealthbar.Visible = true;
+                            cheetoHealthbar.Enabled = true;
+                            bossHealthbar.Visible = false;
+                            bossHealthbar.Enabled = false;
+                            regeneratewalls();
+                            if (picEnemyCheeto.Enabled == true)
+                            {
+                                trigger = true;
+                                fightChamber(enemyCheeto);
+                                //Fight(enemyCheeto);
+                            }
+                        }
+                        if (player.Position.x >= 687 && player.Position.y <= 270)
+                        {
+                            poisionHealthbar.Visible = false;
+                            poisionHealthbar.Enabled = false;
+                            cheetoHealthbar.Visible = false;
+                            cheetoHealthbar.Enabled = false;
+                            bossHealthbar.Visible = true;
+                            bossHealthbar.Enabled = true;
+                            regeneratewalls();
+                            if (picBossKoolAid.Enabled == true)
+                            {
+                                trigger = true;
+
+                                fightChamber(bossKoolaid);
+                                // Fight(bossKoolaid);
+                            }
+                        }
                 
-                // check collision with walls
-                if (HitAWall(player))
-                {
-                    player.MoveBack();
-                }
-                //426, 494
-                if (player.Position.x <= 426 && player.Position.y >= 494) //300, 281
-                {
-                    poisionHealthbar.Visible = false;
-                    poisionHealthbar.Enabled = false;
-                    cheetoHealthbar.Visible = false;
-                    cheetoHealthbar.Enabled = false;
-                    bossHealthbar.Visible = false;
-                    bossHealthbar.Enabled = false;
-                    regeneratewalls();
-                }
-                    // check collision with enemies
-                if (player.Position.x <= 500 && player.Position.y <= 233) //300, 281
-                {
-                    poisionHealthbar.Visible = true;
-                    poisionHealthbar.Enabled = true;
-                    cheetoHealthbar.Visible = false;
-                    cheetoHealthbar.Enabled = false;
-                    bossHealthbar.Visible = false;
-                    bossHealthbar.Enabled = false;
-                    regeneratewalls();
-                    if (picEnemyPoisonPacket.Enabled == true & HitAChar(player, enemyPoisonPacket))
-                    {
-
-                        Fight(enemyPoisonPacket);
-
-                    }
-                }
-                if (player.Position.x >= 687 && player.Position.y >= 474)
-                {
-                    poisionHealthbar.Visible = false;
-                    poisionHealthbar.Enabled = false;
-                    cheetoHealthbar.Visible = true;
-                    cheetoHealthbar.Enabled = true;
-                    bossHealthbar.Visible = false;
-                    bossHealthbar.Enabled = false;
-                    regeneratewalls();
-                    if (picEnemyCheeto.Enabled == true & HitAChar(player, enemyCheeto))
-                    {
-
-                        Fight(enemyCheeto);
-                    }
-                }
-                if (player.Position.x >= 687 && player.Position.y <= 270)
-                {
-                    poisionHealthbar.Visible = false;
-                    poisionHealthbar.Enabled = false;
-                    cheetoHealthbar.Visible = false;
-                    cheetoHealthbar.Enabled = false;
-                    bossHealthbar.Visible = true;
-                    bossHealthbar.Enabled = true;
-                    regeneratewalls();
-                    if (picBossKoolAid.Enabled == true & HitAChar(player, bossKoolaid))
-                    {
-
-                        Fight(bossKoolaid);
-                    }
-                }
                 pause = true;
                 // check character health 
                 if (playerdied == false & player.Health <= 0) 
-                { playerdied = true; playerHealth(); }
+                { playerdied = true; playerHealth(); trigger = false; }
                 else if (poisondied == false & enemyPoisonPacket.Health <= 0)
-                { poisondied = true; poisonHealth(); }
+                { poisondied = true; poisonHealth(); trigger = false; }
                 else if (cheetodied == false & enemyCheeto.Health <= 0) 
-                { cheetodied = true; cheetoHealth(); }
+                { cheetodied = true; cheetoHealth(); trigger = false; }
                 else if (bossdied == false & bossKoolaid.Health <= 0)
-                { bossdied = true; bossHealth(); }
+                { bossdied = true; bossHealth(); trigger = false; }
                 
                 if (victoryflag == false & bossdied == true && poisondied == true && cheetodied == true)
                 {
                     victory();
                     victoryflag = true;
+                    trigger = false;
                 }
                 
             }
         }
+
+        private void fightChamber(Enemy enemy)
+        {
+            playerHealthBar.Enabled = true;
+            playerHealthBar.Visible = true;
+            Thread.Sleep(1000);
+            int health = player.Health;
+            if(enemy == enemyPoisonPacket)
+            {
+                efight = 1;
+                player.Health -= 1;
+
+            }
+            else if(enemy == enemyCheeto)
+            {
+                efight = 2;
+                player.Health -= 2;
+            }
+            else if(enemy == bossKoolaid)
+            {
+                efight = 3;
+                player.Health -= 3;
+            }
+            UpdateHealthBars();
+        }
+        private void UpdateHealthBars()
+        {
+           
+            float playerHealthPer = player.Health / (float)player.MaxHealth;
+            const int MAX_HEALTHBAR_WIDTH = 226;
+            const float ehealth = 20;
+            playerHealthBar.Width = (int)(MAX_HEALTHBAR_WIDTH * playerHealthPer);
+            if (efight==1)
+            {
+                float enemyHealthPer = enemyPoisonPacket.Health / ehealth;
+                poisionHealthbar.Width = (int)(MAX_HEALTHBAR_WIDTH * enemyHealthPer);
+            }
+            else if (efight == 2)
+            {
+                float enemyHealthPer = enemyCheeto.Health / ehealth;
+                cheetoHealthbar.Width = (int)(MAX_HEALTHBAR_WIDTH * enemyHealthPer);
+            }
+            else if (efight == 3)
+            {
+                float enemyHealthPer = bossKoolaid.Health / ehealth;
+                bossHealthbar.Width = (int)(MAX_HEALTHBAR_WIDTH * enemyHealthPer);
+                
+            }
+           
+           
+
+        }
+
+
         private void regeneratewalls()
         {
             picWall13.Enabled = true;
@@ -178,6 +247,7 @@ namespace Fall2020_CSC403_Project {
             picWall11.Visible = true;
             picWall10.Enabled = true;
             picWall10.Visible = true;
+            
            
 
         }
@@ -275,7 +345,7 @@ namespace Fall2020_CSC403_Project {
               applicationPlayPause(); 
               controlWindowStatus(true, false);
               if(frmBattle != null)
-                frmBattle.Close();
+              frmBattle.Close();
           }
       }
       else{
@@ -426,9 +496,54 @@ namespace Fall2020_CSC403_Project {
                 case Keys.Q:
                     statusHealth();
                     break;
+                case Keys.S:
+                    speed();
+                    break;
+                case Keys.A:
+                    attack();
+                    break;
                 default:
                     player.ResetMoveSpeed();
                     break;
+            }
+        }
+
+        private void attack()
+        {
+            if (trigger == true)
+            {
+                if (efight == 1)
+                {
+                    enemyPoisonPacket.Health -= 4;
+                }
+                else if (efight == 2)
+                {
+                    enemyCheeto.Health -= 4;
+                }
+                else if (efight == 3)
+                {
+                    bossKoolaid.Health -= 4;
+
+
+                }
+                UpdateHealthBars();
+            }
+
+        }
+
+        private void speed()
+        {
+            if (speedstatus == false)
+            {
+                player.GO_INC = 5;
+                this.picPlayer.BackColor = System.Drawing.SystemColors.HotTrack;
+                speedstatus = true;
+            }
+            else
+            {
+                player.GO_INC = 3;
+                this.picPlayer.BackColor = System.Drawing.Color.Transparent;
+                speedstatus = false;
             }
         }
 
