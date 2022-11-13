@@ -84,6 +84,8 @@ namespace Fall2020_CSC403_Project {
         {
             if (pause)
             {
+                
+                
                 if (trigger == false)
                 {
                     // update player's picture box
@@ -99,80 +101,83 @@ namespace Fall2020_CSC403_Project {
                     }
                 }
 
-                    //426, 494
-                    if (player.Position.x <= 426 && player.Position.y >= 494) //300, 281
-                    {
-                        poisionHealthbar.Visible = false;
-                        poisionHealthbar.Enabled = false;
-                        cheetoHealthbar.Visible = false;
-                        cheetoHealthbar.Enabled = false;
-                        bossHealthbar.Visible = false;
-                        bossHealthbar.Enabled = false;
-                        regeneratewalls();
-                    }
+                //426, 494
+                if (player.Position.x <= 426 && player.Position.y >= 494) //300, 281
+                {
+                    poisionHealthbar.Visible = false;
+                    poisionHealthbar.Enabled = false;
+                    cheetoHealthbar.Visible = false;
+                    cheetoHealthbar.Enabled = false;
+                    bossHealthbar.Visible = false;
+                    bossHealthbar.Enabled = false;
+                    regeneratewalls();
+                }
                     
-                        // check collision with enemies
-                        if (player.Position.x <= 500 && player.Position.y <= 233) //300, 281
-                        {
-                            poisionHealthbar.Visible = true;
-                            poisionHealthbar.Enabled = true;
-                            cheetoHealthbar.Visible = false;
-                            cheetoHealthbar.Enabled = false;
-                            bossHealthbar.Visible = false;
-                            bossHealthbar.Enabled = false;
-                            regeneratewalls();
-                            if (picEnemyPoisonPacket.Enabled == true)
-                            {
-                                trigger = true;
-                                fightChamber(enemyPoisonPacket);
-                                //Fight(enemyPoisonPacket);
+                // check collision with enemies
+                if (player.Position.x <= 500 && player.Position.y <= 233) //300, 281
+                {
+                    poisionHealthbar.Visible = true;
+                    poisionHealthbar.Enabled = true;
+                    cheetoHealthbar.Visible = false;
+                    cheetoHealthbar.Enabled = false;
+                    bossHealthbar.Visible = false;
+                    bossHealthbar.Enabled = false;
+                    regeneratewalls();
+                    if (picEnemyPoisonPacket.Enabled == true)
+                    {
+                        trigger = true;
+                        
+                        picPlayer.Location = new Point((int)picEnemyPoisonPacket.Location.X+330, (int)picEnemyPoisonPacket.Location.Y);
+                        fightChamber(enemyPoisonPacket);
+                        //Fight(enemyPoisonPacket);
 
-                            }
-                        }
-                        if (player.Position.x >= 687 && player.Position.y >= 474)
-                        {
-                            poisionHealthbar.Visible = false;
-                            poisionHealthbar.Enabled = false;
-                            cheetoHealthbar.Visible = true;
-                            cheetoHealthbar.Enabled = true;
-                            bossHealthbar.Visible = false;
-                            bossHealthbar.Enabled = false;
-                            regeneratewalls();
-                            if (picEnemyCheeto.Enabled == true)
-                            {
-                                trigger = true;
-                                fightChamber(enemyCheeto);
-                                //Fight(enemyCheeto);
-                            }
-                        }
-                        if (player.Position.x >= 687 && player.Position.y <= 270)
-                        {
-                            poisionHealthbar.Visible = false;
-                            poisionHealthbar.Enabled = false;
-                            cheetoHealthbar.Visible = false;
-                            cheetoHealthbar.Enabled = false;
-                            bossHealthbar.Visible = true;
-                            bossHealthbar.Enabled = true;
-                            regeneratewalls();
-                            if (picBossKoolAid.Enabled == true)
-                            {
-                                trigger = true;
+                    }
+                }
+                if (player.Position.x >= 687 && player.Position.y >= 474)
+                {
+                    poisionHealthbar.Visible = false;
+                    poisionHealthbar.Enabled = false;
+                    cheetoHealthbar.Visible = true;
+                    cheetoHealthbar.Enabled = true;
+                    bossHealthbar.Visible = false;
+                    bossHealthbar.Enabled = false;
+                    regeneratewalls();
+                    if (picEnemyCheeto.Enabled == true)
+                    {
+                        trigger = true;
 
-                                fightChamber(bossKoolaid);
-                                // Fight(bossKoolaid);
-                            }
-                        }
+                        fightChamber(enemyCheeto);
+                        //Fight(enemyCheeto);
+                    }
+                }
+                if (player.Position.x >= 687 && player.Position.y <= 270)
+                {
+                    poisionHealthbar.Visible = false;
+                    poisionHealthbar.Enabled = false;
+                    cheetoHealthbar.Visible = false;
+                    cheetoHealthbar.Enabled = false;
+                    bossHealthbar.Visible = true;
+                    bossHealthbar.Enabled = true;
+                    regeneratewalls();
+                    if (picBossKoolAid.Enabled == true)
+                    {
+                        trigger = true;
+                        picPlayer.Location = new Point((int)picBossKoolAid.Location.X-280, (int)picBossKoolAid.Location.Y);
+                        fightChamber(bossKoolaid);
+                        // Fight(bossKoolaid);
+                    }
+                }
                 
                 pause = true;
                 // check character health 
                 if (playerdied == false & player.Health <= 0) 
-                { playerdied = true; playerHealth(); trigger = false; }
+                { playerdied = true; playerHealth(); trigger = false; healthui(); }
                 else if (poisondied == false & enemyPoisonPacket.Health <= 0)
-                { poisondied = true; poisonHealth(); trigger = false; }
+                { poisondied = true; poisonHealth(); trigger = false; healthui(); }
                 else if (cheetodied == false & enemyCheeto.Health <= 0) 
-                { cheetodied = true; cheetoHealth(); trigger = false; }
+                { cheetodied = true; cheetoHealth(); trigger = false; healthui(); }
                 else if (bossdied == false & bossKoolaid.Health <= 0)
-                { bossdied = true; bossHealth(); trigger = false; }
+                { bossdied = true; bossHealth(); trigger = false; healthui(); }
                 
                 if (victoryflag == false & bossdied == true && poisondied == true && cheetodied == true)
                 {
@@ -184,6 +189,12 @@ namespace Fall2020_CSC403_Project {
             }
         }
 
+        private void healthui()
+        {
+            playerHealthBar.Enabled = false;
+            playerHealthBar.Visible = false;
+        }
+
         private void fightChamber(Enemy enemy)
         {
             playerHealthBar.Enabled = true;
@@ -192,6 +203,7 @@ namespace Fall2020_CSC403_Project {
             int health = player.Health;
             if(enemy == enemyPoisonPacket)
             {
+
                 efight = 1;
                 player.Health -= 1;
 
@@ -210,7 +222,7 @@ namespace Fall2020_CSC403_Project {
         }
         private void UpdateHealthBars()
         {
-           
+            playerHealthBar.Location = new Point((int)picPlayer.Location.X, (int)picPlayer.Location.Y + 106);
             float playerHealthPer = player.Health / (float)player.MaxHealth;
             const int MAX_HEALTHBAR_WIDTH = 226;
             const float ehealth = 20;
@@ -551,7 +563,7 @@ namespace Fall2020_CSC403_Project {
         {
             playerHealthBar.Enabled = true;
             playerHealthBar.Visible = true;
-
+           
             Task.Run(() =>
             {
                 Thread.Sleep(500);
