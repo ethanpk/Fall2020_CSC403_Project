@@ -202,5 +202,11 @@
   <ItemGroup>
     <None Include="data\healthkit.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="data\loadbullet.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\machinebullet.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

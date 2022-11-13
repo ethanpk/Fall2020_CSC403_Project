@@ -31,10 +31,11 @@ namespace Fall2020_CSC403_Project {
     private bool speedstatus = false;
     private int efight;
     private bool trigger=false;
+    
+    private bool bulletavailable=false;
 
 
-
-    SoundPlayer sound  = new SoundPlayer(Resources.wallbreak);
+        SoundPlayer sound  = new SoundPlayer(Resources.wallbreak);
     public FrmLevel() {
       InitializeComponent();
     }
@@ -47,7 +48,7 @@ namespace Fall2020_CSC403_Project {
       bossKoolaid = new Enemy(CreatePosition(picBossKoolAid), CreateCollider(picBossKoolAid, PADDING));
       enemyPoisonPacket = new Enemy(CreatePosition(picEnemyPoisonPacket), CreateCollider(picEnemyPoisonPacket, PADDING));
       enemyCheeto = new Enemy(CreatePosition(picEnemyCheeto), CreateCollider(picEnemyCheeto, PADDING));
-
+          
       picEnemyCheeto.Location = new Point(951, 497) ;// cheetoHealthbar.Location;
       bossKoolaid.Img = picBossKoolAid.BackgroundImage;
       enemyPoisonPacket.Img = picEnemyPoisonPacket.BackgroundImage;
@@ -84,8 +85,6 @@ namespace Fall2020_CSC403_Project {
         {
             if (pause)
             {
-                
-                
                 if (trigger == false)
                 {
                     // update player's picture box
@@ -100,8 +99,7 @@ namespace Fall2020_CSC403_Project {
                         player.MoveBack();
                     }
                 }
-
-                //426, 494
+                
                 if (player.Position.x <= 426 && player.Position.y >= 494) //300, 281
                 {
                     poisionHealthbar.Visible = false;
@@ -123,11 +121,12 @@ namespace Fall2020_CSC403_Project {
                     bossHealthbar.Visible = false;
                     bossHealthbar.Enabled = false;
                     regeneratewalls();
+                   
                     if (picEnemyPoisonPacket.Enabled == true)
                     {
                         trigger = true;
                         
-                        picPlayer.Location = new Point((int)picEnemyPoisonPacket.Location.X+330, (int)picEnemyPoisonPacket.Location.Y);
+                        picPlayer.Location = new Point((int)picEnemyPoisonPacket.Location.X-330, (int)picEnemyPoisonPacket.Location.Y);
                         fightChamber(enemyPoisonPacket);
                         //Fight(enemyPoisonPacket);
 
@@ -171,11 +170,11 @@ namespace Fall2020_CSC403_Project {
                 pause = true;
                 // check character health 
                 if (playerdied == false & player.Health <= 0) 
-                { playerdied = true; playerHealth(); trigger = false; healthui(); }
+                { playerdied = true; playerHealth(); trigger = false; healthui(); weaponsvisible(false); }
                 else if (poisondied == false & enemyPoisonPacket.Health <= 0)
-                { poisondied = true; poisonHealth(); trigger = false; healthui(); }
+                { poisondied = true; poisonHealth(); trigger = false; healthui(); weaponsvisible(false); }
                 else if (cheetodied == false & enemyCheeto.Health <= 0) 
-                { cheetodied = true; cheetoHealth(); trigger = false; healthui(); }
+                { cheetodied = true; cheetoHealth(); trigger = false; healthui(); weaponsvisible(false); machinegun(); }
                 else if (bossdied == false & bossKoolaid.Health <= 0)
                 { bossdied = true; bossHealth(); trigger = false; healthui(); }
                 
@@ -187,6 +186,20 @@ namespace Fall2020_CSC403_Project {
                 }
                 
             }
+        }
+
+        private void machinegun()
+        {
+            machinegn.Enabled = true;
+            machinegn.Visible = true;
+        }
+
+        private void weaponsvisible(bool v)
+        {
+            gun.Enabled = v;
+            gun.Visible = v;
+            bullet.Enabled=v;
+            bullet.Visible = v;
         }
 
         private void healthui()
@@ -522,11 +535,20 @@ namespace Fall2020_CSC403_Project {
 
         private void attack()
         {
+            
             if (trigger == true)
             {
+                if (bulletavailable == false)
+                {
+                    weaponsvisible(true);
+                    gun.Location = new Point(picPlayer.Location.X + 40, picPlayer.Location.Y);
+                    bullet.Location = new Point(gun.Location.X, gun.Location.Y);
+                }
+
                 if (efight == 1)
                 {
                     enemyPoisonPacket.Health -= 4;
+                    
                 }
                 else if (efight == 2)
                 {
@@ -540,7 +562,7 @@ namespace Fall2020_CSC403_Project {
                 }
                 UpdateHealthBars();
             }
-
+            
         }
 
         private void speed()
@@ -577,7 +599,7 @@ namespace Fall2020_CSC403_Project {
         #endregion
 
         #region PlaypauseControl
-        private void restarrt_Click(object sender, EventArgs e)
+    private void restarrt_Click(object sender, EventArgs e)
     {
         applicationRestart();
     }
@@ -616,10 +638,6 @@ namespace Fall2020_CSC403_Project {
             }
         }
 
-        private void centerdockpanel_Paint(object sender, PaintEventArgs e)
-        {
-            
-
-        }
+        
     }
 }
