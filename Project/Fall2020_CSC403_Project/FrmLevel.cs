@@ -1,5 +1,6 @@
 ﻿using Fall2020_CSC403_Project.code;
 using Fall2020_CSC403_Project.Properties;
+using MyGameLibrary;
 using System;
 using System.Drawing;
 using System.Media;
@@ -14,6 +15,7 @@ namespace Fall2020_CSC403_Project {
     private Enemy enemyPoisonPacket;
     private Enemy bossKoolaid;
     private Enemy enemyCheeto;
+    private Health healthtrack;
     private Character[] walls;
     private TimeSpan span;
     private DateTime timeBegin;
@@ -48,7 +50,7 @@ namespace Fall2020_CSC403_Project {
       bossKoolaid = new Enemy(CreatePosition(picBossKoolAid), CreateCollider(picBossKoolAid, PADDING));
       enemyPoisonPacket = new Enemy(CreatePosition(picEnemyPoisonPacket), CreateCollider(picEnemyPoisonPacket, PADDING));
       enemyCheeto = new Enemy(CreatePosition(picEnemyCheeto), CreateCollider(picEnemyCheeto, PADDING));
-          
+      healthtrack = new Health(CreatePosition(healthkit), CreateCollider(healthkit, PADDING));
       picEnemyCheeto.Location = new Point(951, 497) ;// cheetoHealthbar.Location;
       bossKoolaid.Img = picBossKoolAid.BackgroundImage;
       enemyPoisonPacket.Img = picEnemyPoisonPacket.BackgroundImage;
@@ -99,7 +101,12 @@ namespace Fall2020_CSC403_Project {
                         player.MoveBack();
                     }
                 }
-                
+                if (HitAKit(player,healthtrack) && healthkit.Visible==true)
+                {
+                    player.Health = player.MaxHealth;
+                    healthkit.Visible = false;
+                    healthkit.Enabled = false;
+                }
                 if (player.Position.x <= 426 && player.Position.y >= 494) //300, 281
                 {
                     poisionHealthbar.Visible = false;
@@ -125,7 +132,6 @@ namespace Fall2020_CSC403_Project {
                     if (picEnemyPoisonPacket.Enabled == true)
                     {
                         trigger = true;
-                        
                         picPlayer.Location = new Point((int)picEnemyPoisonPacket.Location.X-330, (int)picEnemyPoisonPacket.Location.Y);
                         fightChamber(enemyPoisonPacket);
                         //Fight(enemyPoisonPacket);
@@ -172,11 +178,11 @@ namespace Fall2020_CSC403_Project {
                 if (playerdied == false & player.Health <= 0) 
                 { playerdied = true; playerHealth(); trigger = false; healthui(); weaponsvisible(false); }
                 else if (poisondied == false & enemyPoisonPacket.Health <= 0)
-                { poisondied = true; poisonHealth(); trigger = false; healthui(); weaponsvisible(false); }
+                { poisondied = true; poisonHealth(); trigger = false; healthui(); weaponsvisible(false); healthkit.Visible = true; healthkit.Enabled = true; }
                 else if (cheetodied == false & enemyCheeto.Health <= 0) 
                 { cheetodied = true; cheetoHealth(); trigger = false; healthui(); weaponsvisible(false); machinegun(); }
                 else if (bossdied == false & bossKoolaid.Health <= 0)
-                { bossdied = true; bossHealth(); trigger = false; healthui(); }
+                { bossdied = true; bossHealth(); trigger = false; healthui(); weaponsvisible(false); }
                 
                 if (victoryflag == false & bossdied == true && poisondied == true && cheetodied == true)
                 {
@@ -188,6 +194,11 @@ namespace Fall2020_CSC403_Project {
             }
         }
 
+        
+        private bool HitAKit(Character you, Character other)
+        {
+            return you.Collider.Intersects(other.Collider);
+        }
         private void machinegun()
         {
             machinegn.Enabled = true;

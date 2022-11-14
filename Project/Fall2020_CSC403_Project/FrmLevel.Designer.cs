@@ -63,6 +63,7 @@
             this.windowplaypause = new System.Windows.Forms.PictureBox();
             this.windowpic = new System.Windows.Forms.PictureBox();
             this.machinegn = new System.Windows.Forms.PictureBox();
+            this.healthkit = new System.Windows.Forms.PictureBox();
             rightdockpanel = new System.Windows.Forms.Panel();
             this.controlswindow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frmlevelrestart)).BeginInit();
@@ -92,6 +93,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.windowplaypause)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.windowpic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.machinegn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.healthkit)).BeginInit();
             this.SuspendLayout();
             // 
             // rightdockpanel
@@ -145,7 +147,6 @@
             // controlswindow
             // 
             this.controlswindow.BackColor = System.Drawing.Color.Transparent;
-            this.controlswindow.Controls.Add(this.machinegn);
             this.controlswindow.Controls.Add(rightdockpanel);
             this.controlswindow.Controls.Add(this.windowrestart);
             this.controlswindow.Controls.Add(this.centerdockpanel);
@@ -523,6 +524,17 @@
             this.machinegn.TabStop = false;
             this.machinegn.Visible = false;
             // 
+            // healthkit
+            // 
+            this.healthkit.Enabled = false;
+            this.healthkit.Image = global::Fall2020_CSC403_Project.Properties.Resources.healthkit;
+            this.healthkit.Location = new System.Drawing.Point(337, 74);
+            this.healthkit.Name = "healthkit";
+            this.healthkit.Size = new System.Drawing.Size(47, 50);
+            this.healthkit.TabIndex = 9;
+            this.healthkit.TabStop = false;
+            this.healthkit.Visible = false;
+            // 
             // FrmLevel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -557,6 +569,8 @@
             this.Controls.Add(this.bossHealthbar);
             this.Controls.Add(this.picEnemyCheeto);
             this.Controls.Add(this.bullet);
+            this.Controls.Add(this.healthkit);
+            this.Controls.Add(this.machinegn);
             this.Controls.Add(this.controlswindow);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -596,6 +610,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.windowplaypause)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.windowpic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.machinegn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.healthkit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -640,6 +655,7 @@
         private System.Windows.Forms.PictureBox bullet;
         private System.Windows.Forms.PictureBox gun;
         private System.Windows.Forms.PictureBox machinegn;
+        private System.Windows.Forms.PictureBox healthkit;
     }
 }
 
