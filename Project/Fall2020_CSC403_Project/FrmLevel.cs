@@ -177,8 +177,7 @@ namespace Fall2020_CSC403_Project {
                     bossHealthbar.Visible = false;
                     bossHealthbar.Enabled = false;
                     regeneratewalls();
-                    speedstatus = false;
-                    player.GO_INC = 3;
+                    basicmode();
                     //if (soundenemy == true)
                     //{
                     //    SoundPlayer poisionsound = new SoundPlayer(Resources.poision);
@@ -204,8 +203,7 @@ namespace Fall2020_CSC403_Project {
                     bossHealthbar.Visible = false;
                     bossHealthbar.Enabled = false;
                     regeneratewalls();
-                    speedstatus = false;
-                    player.GO_INC = 3;
+                    basicmode();
                     if (picEnemyCheeto.Enabled == true)
                     {
                         trigger = true;
@@ -223,8 +221,8 @@ namespace Fall2020_CSC403_Project {
                     bossHealthbar.Visible = true;
                     bossHealthbar.Enabled = true;
                     regeneratewalls();
-                    speedstatus = false;
-                    player.GO_INC = 3;
+                    basicmode();
+
                     if (picBossKoolAid.Enabled == true)
                     {
                         trigger = true;
@@ -697,10 +695,16 @@ namespace Fall2020_CSC403_Project {
             }
             else
             {
-                player.GO_INC = 3;
-                this.picPlayer.BackColor = System.Drawing.Color.Transparent;
-                speedstatus = false;
+                basicmode();
+                
             }
+        }
+
+        private void basicmode()
+        {
+            player.GO_INC = 3;
+            this.picPlayer.BackColor = System.Drawing.Color.Transparent;
+            speedstatus = false;
         }
 
         private void statusHealth()
