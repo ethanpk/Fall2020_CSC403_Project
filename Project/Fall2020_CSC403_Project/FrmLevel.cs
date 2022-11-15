@@ -38,6 +38,7 @@ namespace Fall2020_CSC403_Project {
     SoundPlayer sound  = new SoundPlayer(Resources.wallbreak);
     private bool speedenable=false;
         private bool soundenemy;
+        private int weapontype=1;
 
         public FrmLevel() {
       InitializeComponent();
@@ -113,8 +114,9 @@ namespace Fall2020_CSC403_Project {
                 {
                     gun.BackgroundImage = Resources.machinegun1;
                     gun.Width = gun.Width + 50;
+                    weapontype = 2;
                     //player.Health = player.MaxHealth;
-                   // bullet.Image = Resources.mahinebullet;
+                    // bullet.Image = Resources.mahinebullet;
                     machinegn.Visible = false;
                     machinegn.Enabled = false;
                 }
@@ -215,6 +217,7 @@ namespace Fall2020_CSC403_Project {
 
         private bool HitAWeapon(Character you, Character other)
         {
+            
             return you.Collider.Intersects(other.Collider);
         }
 
@@ -577,9 +580,18 @@ namespace Fall2020_CSC403_Project {
             
             if (trigger == true)
             {
-                SoundPlayer weaponsound = new SoundPlayer(Resources.handgun);
                 
-                weaponsound.Play();
+                if (weapontype==1)
+                {
+                    SoundPlayer weaponsound = new SoundPlayer(Resources.handgun);
+                    weaponsound.Play();
+                }
+                else if(weapontype==2)
+                {
+                    SoundPlayer weaponsound = new SoundPlayer(Resources.machinegun);
+                    weaponsound.Play();
+                }
+                
                 if (bulletavailable == false)
                 {
                     weaponsvisible(true);
@@ -589,18 +601,41 @@ namespace Fall2020_CSC403_Project {
 
                 if (efight == 1)
                 {
-                    enemyPoisonPacket.Health -= 4;
+                    if (weapontype == 1)
+                    {
+                        enemyPoisonPacket.Health -= 2;
+                    }
+                    else if (weapontype == 2)
+                    {
+                        enemyPoisonPacket.Health -= 4;
+                    }
+                   
                     
                 }
                 else if (efight == 2)
                 {
-                    enemyCheeto.Health -= 4;
+                    if (weapontype == 1)
+                    {
+                        enemyCheeto.Health -= 2;
+                    }
+                    else if (weapontype == 2)
+                    {
+                        enemyCheeto.Health -= 4;
+                    }
+                    
                 }
                 else if (efight == 3)
                 {
-                    bossKoolaid.Health -= 4;
+                   
 
-
+                    if (weapontype == 1)
+                    {
+                        bossKoolaid.Health -= 2;
+                    }
+                    else if (weapontype == 2)
+                    {
+                        bossKoolaid.Health -= 4;
+                    }
                 }
                 UpdateHealthBars();
             }
