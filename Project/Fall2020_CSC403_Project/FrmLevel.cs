@@ -34,12 +34,12 @@ namespace Fall2020_CSC403_Project {
     private bool speedstatus = false;
     private int efight;
     private bool trigger=false;
-    
     private bool bulletavailable=false;
+    SoundPlayer sound  = new SoundPlayer(Resources.wallbreak);
+    private bool speedenable=false;
+        private bool soundenemy;
 
-
-        SoundPlayer sound  = new SoundPlayer(Resources.wallbreak);
-    public FrmLevel() {
+        public FrmLevel() {
       InitializeComponent();
     }
 
@@ -96,7 +96,7 @@ namespace Fall2020_CSC403_Project {
                     playerHealthBar.Location = new Point((int)player.Position.x, (int)player.Position.y + 106);
                     // move player
                     player.Move();
-
+                    soundenemy = true;
                     // check collision with walls
                     if (HitAWall(player))
                     {
@@ -139,7 +139,13 @@ namespace Fall2020_CSC403_Project {
                     bossHealthbar.Visible = false;
                     bossHealthbar.Enabled = false;
                     regeneratewalls();
-                   
+                    //if (soundenemy == true)
+                    //{
+                    //    SoundPlayer poisionsound = new SoundPlayer(Resources.poision);
+                    //    poisionsound.Play();
+                    //    soundenemy = false;
+                    //}
+                    
                     if (picEnemyPoisonPacket.Enabled == true)
                     {
                         trigger = true;
@@ -158,6 +164,7 @@ namespace Fall2020_CSC403_Project {
                     bossHealthbar.Visible = false;
                     bossHealthbar.Enabled = false;
                     regeneratewalls();
+                    
                     if (picEnemyCheeto.Enabled == true)
                     {
                         trigger = true;
@@ -175,6 +182,7 @@ namespace Fall2020_CSC403_Project {
                     bossHealthbar.Visible = true;
                     bossHealthbar.Enabled = true;
                     regeneratewalls();
+                   
                     if (picBossKoolAid.Enabled == true)
                     {
                         trigger = true;
@@ -236,6 +244,7 @@ namespace Fall2020_CSC403_Project {
 
         private void fightChamber(Enemy enemy)
         {
+            
             playerHealthBar.Enabled = true;
             playerHealthBar.Visible = true;
             Thread.Sleep(1000);
@@ -259,6 +268,8 @@ namespace Fall2020_CSC403_Project {
             }
             UpdateHealthBars();
         }
+
+        
         private void UpdateHealthBars()
         {
             playerHealthBar.Location = new Point((int)picPlayer.Location.X, (int)picPlayer.Location.Y + 106);
@@ -304,26 +315,28 @@ namespace Fall2020_CSC403_Project {
         }
         private void destroyWall(PictureBox box)
         {
-
-            if(box.Name== "picWall13")
+            if (speedenable == true)
             {
-                wallBreak(box);
+                if (box.Name == "picWall13")
+                {
+                    wallBreak(box);
 
-            }
-            if (box.Name == "picWall11")
-            {
-                wallBreak(box);
+                }
+                if (box.Name == "picWall11")
+                {
+                    wallBreak(box);
 
-            }
-            if (box.Name == "picWall10")
-            {
-                wallBreak(box);
+                }
+                if (box.Name == "picWall10")
+                {
+                    wallBreak(box);
 
-            }
-            if (box.Name == "picWall14")
-            {
-                wallBreak(box);
+                }
+                if (box.Name == "picWall14")
+                {
+                    wallBreak(box);
 
+                }
             }
         }
 
@@ -564,6 +577,9 @@ namespace Fall2020_CSC403_Project {
             
             if (trigger == true)
             {
+                SoundPlayer weaponsound = new SoundPlayer(Resources.handgun);
+                
+                weaponsound.Play();
                 if (bulletavailable == false)
                 {
                     weaponsvisible(true);
@@ -598,6 +614,7 @@ namespace Fall2020_CSC403_Project {
                 player.GO_INC = 5;
                 this.picPlayer.BackColor = System.Drawing.SystemColors.HotTrack;
                 speedstatus = true;
+                speedenable = true;
             }
             else
             {

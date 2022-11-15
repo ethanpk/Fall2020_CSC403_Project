@@ -208,5 +208,14 @@
   <ItemGroup>
     <None Include="data\machinebullet.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="data\boss.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\cheeto.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\poision.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
