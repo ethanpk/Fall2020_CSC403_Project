@@ -32,9 +32,6 @@
             this.leftdockpanel = new System.Windows.Forms.Panel();
             this.centerdockpanel = new System.Windows.Forms.Panel();
             this.controlswindow = new System.Windows.Forms.Panel();
-            this.windowrestart = new System.Windows.Forms.PictureBox();
-            this.windowplaypause = new System.Windows.Forms.PictureBox();
-            this.windowpic = new System.Windows.Forms.PictureBox();
             this.poisionHealthbar = new System.Windows.Forms.Label();
             this.playerHealthBar = new System.Windows.Forms.Label();
             this.cheetoHealthbar = new System.Windows.Forms.Label();
@@ -62,13 +59,13 @@
             this.gun = new System.Windows.Forms.PictureBox();
             this.picEnemyCheeto = new System.Windows.Forms.PictureBox();
             this.bullet = new System.Windows.Forms.PictureBox();
-            this.machinegn = new System.Windows.Forms.PictureBox();
             this.healthkit = new System.Windows.Forms.PictureBox();
+            this.machinegn = new System.Windows.Forms.PictureBox();
+            this.windowrestart = new System.Windows.Forms.PictureBox();
+            this.windowplaypause = new System.Windows.Forms.PictureBox();
+            this.windowpic = new System.Windows.Forms.PictureBox();
             rightdockpanel = new System.Windows.Forms.Panel();
             this.controlswindow.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.windowrestart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windowplaypause)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windowpic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.frmlevelrestart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.frmlevelplaypause)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWall2)).BeginInit();
@@ -92,8 +89,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gun)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEnemyCheeto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bullet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.machinegn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.healthkit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.machinegn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.windowrestart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.windowplaypause)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.windowpic)).BeginInit();
             this.SuspendLayout();
             // 
             // rightdockpanel
@@ -159,49 +159,6 @@
             this.controlswindow.Size = new System.Drawing.Size(1176, 726);
             this.controlswindow.TabIndex = 20;
             this.controlswindow.Visible = false;
-            // 
-            // windowrestart
-            // 
-            this.windowrestart.BackColor = System.Drawing.Color.Transparent;
-            this.windowrestart.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.restart_button;
-            this.windowrestart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.windowrestart.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.windowrestart.Dock = System.Windows.Forms.DockStyle.Left;
-            this.windowrestart.Location = new System.Drawing.Point(701, 516);
-            this.windowrestart.Name = "windowrestart";
-            this.windowrestart.Size = new System.Drawing.Size(191, 210);
-            this.windowrestart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.windowrestart.TabIndex = 6;
-            this.windowrestart.TabStop = false;
-            this.windowrestart.Click += new System.EventHandler(this.restarrt_Click);
-            // 
-            // windowplaypause
-            // 
-            this.windowplaypause.BackColor = System.Drawing.Color.Transparent;
-            this.windowplaypause.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.play_button;
-            this.windowplaypause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.windowplaypause.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.windowplaypause.Dock = System.Windows.Forms.DockStyle.Left;
-            this.windowplaypause.Location = new System.Drawing.Point(291, 516);
-            this.windowplaypause.Name = "windowplaypause";
-            this.windowplaypause.Size = new System.Drawing.Size(179, 210);
-            this.windowplaypause.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.windowplaypause.TabIndex = 4;
-            this.windowplaypause.TabStop = false;
-            this.windowplaypause.Click += new System.EventHandler(this.windowplaypause_Click);
-            // 
-            // windowpic
-            // 
-            this.windowpic.BackColor = System.Drawing.Color.IndianRed;
-            this.windowpic.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.gamepaused;
-            this.windowpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.windowpic.Dock = System.Windows.Forms.DockStyle.Top;
-            this.windowpic.Location = new System.Drawing.Point(0, 0);
-            this.windowpic.Name = "windowpic";
-            this.windowpic.Size = new System.Drawing.Size(1176, 516);
-            this.windowpic.TabIndex = 2;
-            this.windowpic.TabStop = false;
-            this.windowpic.Click += new System.EventHandler(this.windowpic_Click);
             // 
             // poisionHealthbar
             // 
@@ -512,6 +469,17 @@
             this.bullet.TabStop = false;
             this.bullet.Visible = false;
             // 
+            // healthkit
+            // 
+            this.healthkit.Enabled = false;
+            this.healthkit.Image = global::Fall2020_CSC403_Project.Properties.Resources.healthkit;
+            this.healthkit.Location = new System.Drawing.Point(337, 74);
+            this.healthkit.Name = "healthkit";
+            this.healthkit.Size = new System.Drawing.Size(47, 50);
+            this.healthkit.TabIndex = 9;
+            this.healthkit.TabStop = false;
+            this.healthkit.Visible = false;
+            // 
             // machinegn
             // 
             this.machinegn.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.machinegun1;
@@ -524,16 +492,48 @@
             this.machinegn.TabStop = false;
             this.machinegn.Visible = false;
             // 
-            // healthkit
+            // windowrestart
             // 
-            this.healthkit.Enabled = false;
-            this.healthkit.Image = global::Fall2020_CSC403_Project.Properties.Resources.healthkit;
-            this.healthkit.Location = new System.Drawing.Point(337, 74);
-            this.healthkit.Name = "healthkit";
-            this.healthkit.Size = new System.Drawing.Size(47, 50);
-            this.healthkit.TabIndex = 9;
-            this.healthkit.TabStop = false;
-            this.healthkit.Visible = false;
+            this.windowrestart.BackColor = System.Drawing.Color.Transparent;
+            this.windowrestart.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.restart_button;
+            this.windowrestart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.windowrestart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.windowrestart.Dock = System.Windows.Forms.DockStyle.Left;
+            this.windowrestart.Location = new System.Drawing.Point(701, 516);
+            this.windowrestart.Name = "windowrestart";
+            this.windowrestart.Size = new System.Drawing.Size(191, 210);
+            this.windowrestart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.windowrestart.TabIndex = 6;
+            this.windowrestart.TabStop = false;
+            this.windowrestart.Click += new System.EventHandler(this.restarrt_Click);
+            // 
+            // windowplaypause
+            // 
+            this.windowplaypause.BackColor = System.Drawing.Color.Transparent;
+            this.windowplaypause.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.play_button;
+            this.windowplaypause.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.windowplaypause.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.windowplaypause.Dock = System.Windows.Forms.DockStyle.Left;
+            this.windowplaypause.Location = new System.Drawing.Point(291, 516);
+            this.windowplaypause.Name = "windowplaypause";
+            this.windowplaypause.Size = new System.Drawing.Size(179, 210);
+            this.windowplaypause.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.windowplaypause.TabIndex = 4;
+            this.windowplaypause.TabStop = false;
+            this.windowplaypause.Click += new System.EventHandler(this.windowplaypause_Click);
+            // 
+            // windowpic
+            // 
+            this.windowpic.BackColor = System.Drawing.Color.IndianRed;
+            this.windowpic.BackgroundImage = global::Fall2020_CSC403_Project.Properties.Resources.warningscreen;
+            this.windowpic.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.windowpic.Dock = System.Windows.Forms.DockStyle.Top;
+            this.windowpic.Location = new System.Drawing.Point(0, 0);
+            this.windowpic.Name = "windowpic";
+            this.windowpic.Size = new System.Drawing.Size(1176, 516);
+            this.windowpic.TabIndex = 2;
+            this.windowpic.TabStop = false;
+            this.windowpic.Click += new System.EventHandler(this.windowpic_Click);
             // 
             // FrmLevel
             // 
@@ -541,6 +541,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1176, 726);
+            this.Controls.Add(this.controlswindow);
             this.Controls.Add(this.frmlevelrestart);
             this.Controls.Add(this.frmlevelplaypause);
             this.Controls.Add(this.picWall2);
@@ -571,7 +572,6 @@
             this.Controls.Add(this.bullet);
             this.Controls.Add(this.healthkit);
             this.Controls.Add(this.machinegn);
-            this.Controls.Add(this.controlswindow);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -583,9 +583,6 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FrmLevel_KeyUp);
             this.controlswindow.ResumeLayout(false);
             this.controlswindow.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.windowrestart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windowplaypause)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.windowpic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.frmlevelrestart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.frmlevelplaypause)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWall2)).EndInit();
@@ -609,8 +606,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gun)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picEnemyCheeto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bullet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.machinegn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.healthkit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.machinegn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.windowrestart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.windowplaypause)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.windowpic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

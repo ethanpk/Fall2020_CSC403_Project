@@ -35,16 +35,20 @@ namespace Fall2020_CSC403_Project {
     private int efight;
     private bool trigger=false;
     private bool bulletavailable=false;
+    private SoundPlayer introwarning;
     SoundPlayer sound  = new SoundPlayer(Resources.wallbreak);
     private bool speedenable=false;
-        private bool soundenemy;
-        private int weapontype=1;
+    private bool soundenemy;
+    private int weapontype=1;
+        private int intro = -1;
 
-        public FrmLevel() {
-      InitializeComponent();
+    public FrmLevel() {
+           
+            InitializeComponent();
     }
 
     private void FrmLevel_Load(object sender, EventArgs e) {
+       
       const int PADDING = 7;
       sound.Load();
       gametime = 75;
@@ -68,13 +72,45 @@ namespace Fall2020_CSC403_Project {
         PictureBox pic = Controls.Find("picWall" + w.ToString(), true)[0] as PictureBox;
         walls[w] = new Character(CreatePosition(pic), CreateCollider(pic, PADDING));
       }
-     
+      if (intro == -1)
+      {
+          controlswindowintial();
+          introwarning = new SoundPlayer(Resources.warningaudio);
+          introwarning.Play();
+          Task.Run(() =>
+          {
+              Thread.Sleep(13000);
+              this.Invoke(new Action(() =>
+              {
+                  applicationPlayPause();
+                  controlWindowStatus(false, true);
+                  intro = 1;
+                  pause = true;
+                  windowrestart.Visible = true;
+                  windowrestart.Enabled = true;
+              }));
+          });
+      }
+      
       Game.player = player;
       timeBegin = DateTime.Now.AddSeconds(gametime);
+     
              
     }
 
-    private Vector2 CreatePosition(PictureBox pic) {
+        private void controlswindowintial()
+        {
+            controlswindow.Enabled = true;
+            controlswindow.Visible = true;
+            windowplaypause.Enabled = false;
+            windowplaypause.Visible = false;
+            pause = true;
+            windowrestart.Visible = false;
+            windowrestart.Enabled = false;
+
+        }
+
+        private Vector2 CreatePosition(PictureBox pic) {
       return new Vector2(pic.Location.X, pic.Location.Y);
     }
 
@@ -141,13 +177,15 @@ namespace Fall2020_CSC403_Project {
                     bossHealthbar.Visible = false;
                     bossHealthbar.Enabled = false;
                     regeneratewalls();
+                    speedstatus = false;
+                    player.GO_INC = 3;
                     //if (soundenemy == true)
                     //{
                     //    SoundPlayer poisionsound = new SoundPlayer(Resources.poision);
                     //    poisionsound.Play();
                     //    soundenemy = false;
                     //}
-                    
+
                     if (picEnemyPoisonPacket.Enabled == true)
                     {
                         trigger = true;
@@ -166,7 +204,8 @@ namespace Fall2020_CSC403_Project {
                     bossHealthbar.Visible = false;
                     bossHealthbar.Enabled = false;
                     regeneratewalls();
-                    
+                    speedstatus = false;
+                    player.GO_INC = 3;
                     if (picEnemyCheeto.Enabled == true)
                     {
                         trigger = true;
@@ -184,7 +223,8 @@ namespace Fall2020_CSC403_Project {
                     bossHealthbar.Visible = true;
                     bossHealthbar.Enabled = true;
                     regeneratewalls();
-                   
+                    speedstatus = false;
+                    player.GO_INC = 3;
                     if (picBossKoolAid.Enabled == true)
                     {
                         trigger = true;
@@ -318,7 +358,7 @@ namespace Fall2020_CSC403_Project {
         }
         private void destroyWall(PictureBox box)
         {
-            if (speedenable == true)
+            if (speedstatus == true)
             {
                 if (box.Name == "picWall13")
                 {
@@ -569,6 +609,10 @@ namespace Fall2020_CSC403_Project {
                 case Keys.A:
                     attack();
                     break;
+                case Keys.Escape:
+                    applicationPlayPause();
+                    controlWindowStatus(false, true);
+                    break;
                 default:
                     player.ResetMoveSpeed();
                     break;
@@ -691,6 +735,7 @@ namespace Fall2020_CSC403_Project {
     }
     private void windowplaypause_Click(object sender, EventArgs e)
     {
+            
         applicationPlayPause();
         controlWindowStatus(false,true);
     }

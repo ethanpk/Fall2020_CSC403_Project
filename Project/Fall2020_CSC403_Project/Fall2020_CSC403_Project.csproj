@@ -217,5 +217,11 @@
   <ItemGroup>
     <None Include="data\poision.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="data\warningscreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\warningaudio.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
