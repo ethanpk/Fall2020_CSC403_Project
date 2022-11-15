@@ -15,6 +15,7 @@ namespace Fall2020_CSC403_Project {
     private Enemy enemyPoisonPacket;
     private Enemy bossKoolaid;
     private Enemy enemyCheeto;
+    private Weapon weaponfind;
     private Health healthtrack;
     private Character[] walls;
     private TimeSpan span;
@@ -51,6 +52,7 @@ namespace Fall2020_CSC403_Project {
       enemyPoisonPacket = new Enemy(CreatePosition(picEnemyPoisonPacket), CreateCollider(picEnemyPoisonPacket, PADDING));
       enemyCheeto = new Enemy(CreatePosition(picEnemyCheeto), CreateCollider(picEnemyCheeto, PADDING));
       healthtrack = new Health(CreatePosition(healthkit), CreateCollider(healthkit, PADDING));
+      weaponfind = new Weapon(CreatePosition(machinegn), CreateCollider(machinegn, PADDING));
       picEnemyCheeto.Location = new Point(951, 497) ;// cheetoHealthbar.Location;
       bossKoolaid.Img = picBossKoolAid.BackgroundImage;
       enemyPoisonPacket.Img = picEnemyPoisonPacket.BackgroundImage;
@@ -106,6 +108,15 @@ namespace Fall2020_CSC403_Project {
                     player.Health = player.MaxHealth;
                     healthkit.Visible = false;
                     healthkit.Enabled = false;
+                }
+                if (HitAWeapon(player, weaponfind) && machinegn.Visible == true)
+                {
+                    gun.BackgroundImage = Resources.machinegun1;
+                    gun.Width = gun.Width + 50;
+                    //player.Health = player.MaxHealth;
+                   // bullet.Image = Resources.mahinebullet;
+                    machinegn.Visible = false;
+                    machinegn.Enabled = false;
                 }
                 if (player.Position.x <= 426 && player.Position.y >= 494) //300, 281
                 {
@@ -194,7 +205,11 @@ namespace Fall2020_CSC403_Project {
             }
         }
 
-        
+        private bool HitAWeapon(Character you, Character other)
+        {
+            return you.Collider.Intersects(other.Collider);
+        }
+
         private bool HitAKit(Character you, Character other)
         {
             return you.Collider.Intersects(other.Collider);
