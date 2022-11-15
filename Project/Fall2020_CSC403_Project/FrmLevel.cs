@@ -97,7 +97,13 @@ namespace Fall2020_CSC403_Project {
      
              
     }
-
+        private void controlwarning()
+        {
+            applicationPlayPause();
+            controlWindowStatus(true, true);
+            windowpic.BackgroundImage = Resources.warningscreen;
+        }
+       
         private void controlswindowintial()
         {
             controlswindow.Enabled = true;
@@ -168,7 +174,7 @@ namespace Fall2020_CSC403_Project {
                 }
                     
                 // check collision with enemies
-                if (player.Position.x <= 500 && player.Position.y <= 233) //300, 281
+                if (player.Position.x <= 500 && player.Position.y <= 233 ) //300, 281
                 {
                     poisionHealthbar.Visible = true;
                     poisionHealthbar.Enabled = true;
@@ -177,7 +183,8 @@ namespace Fall2020_CSC403_Project {
                     bossHealthbar.Visible = false;
                     bossHealthbar.Enabled = false;
                     regeneratewalls();
-                    basicmode();
+
+                    
                     //if (soundenemy == true)
                     //{
                     //    SoundPlayer poisionsound = new SoundPlayer(Resources.poision);
@@ -187,7 +194,9 @@ namespace Fall2020_CSC403_Project {
 
                     if (picEnemyPoisonPacket.Enabled == true)
                     {
+                       
                         trigger = true;
+                        basicmode();
                         picPlayer.Location = new Point((int)picEnemyPoisonPacket.Location.X-330, (int)picEnemyPoisonPacket.Location.Y);
                         fightChamber(enemyPoisonPacket);
                         //Fight(enemyPoisonPacket);
@@ -203,11 +212,11 @@ namespace Fall2020_CSC403_Project {
                     bossHealthbar.Visible = false;
                     bossHealthbar.Enabled = false;
                     regeneratewalls();
-                    basicmode();
+                    
                     if (picEnemyCheeto.Enabled == true)
                     {
                         trigger = true;
-
+                        basicmode();
                         fightChamber(enemyCheeto);
                         //Fight(enemyCheeto);
                     }
@@ -221,11 +230,13 @@ namespace Fall2020_CSC403_Project {
                     bossHealthbar.Visible = true;
                     bossHealthbar.Enabled = true;
                     regeneratewalls();
-                    basicmode();
+                    
 
                     if (picBossKoolAid.Enabled == true)
                     {
+                     
                         trigger = true;
+                        basicmode();
                         picPlayer.Location = new Point((int)picBossKoolAid.Location.X-280, (int)picBossKoolAid.Location.Y);
                         fightChamber(bossKoolaid);
                         // Fight(bossKoolaid);
@@ -608,8 +619,7 @@ namespace Fall2020_CSC403_Project {
                     attack();
                     break;
                 case Keys.Escape:
-                    applicationPlayPause();
-                    controlWindowStatus(false, true);
+                    controlwarning();
                     break;
                 default:
                     player.ResetMoveSpeed();
@@ -691,7 +701,7 @@ namespace Fall2020_CSC403_Project {
                 player.GO_INC = 5;
                 this.picPlayer.BackColor = System.Drawing.SystemColors.HotTrack;
                 speedstatus = true;
-                speedenable = true;
+                
             }
             else
             {
