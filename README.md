@@ -3,7 +3,7 @@ In the game development team, spider is looking for two main experiences for the
 As part of those features team started focusing on basic required funtionality for interaction and increase the intensity.
 
 ### SPIDER TEAM
-:feelsgood: Pujith :goberserk: Ashok :godmode: Grumeet :rage1: Yeswanth
+:feelsgood: Pujit :goberserk: Ashok :godmode: Grumeet :rage1: Yeswanth
 
 
 ## Sprint 1
@@ -224,7 +224,7 @@ Email Id: pne005@latech.edu</br>
 
 - As a player, I should have access to different weapons.</br>
 
-:godmode: Grumeet </br>
+:godmode: Gurmeet </br>
 
 - As a User, I should  experience Game sounds and animated characters.</br>
 
@@ -235,6 +235,163 @@ Email Id: pne005@latech.edu</br>
 :goberserk: Ashok
 
 - As a player, I'll need to play the game in the same window with good fight animations.</br>
+
+
+<details><summary>Sprint2 Summary</summary>
+<p>
+
+
+
+### Class Status Summary:
+
+|Added Methods |Modified Methods|
+|---|---|
+|EnemyFormPopup.Designer.cs| FrmLevel.Designer.cs|
+|EnemyFormPopup.cs| FrmLevel.cs|
+|Health.cs||
+|Weapon.cs||
+
+Methods Status Summary:
+
+|Added Methods |Modified Methods|
+|---|---|
+|Controlwarning()| FrmLevel_Load|
+|Controlswindowintial()| tmrPlayerMove_Tick|
+|HitAWeapon()|FrmLevel_KeyDown()|
+|HitAKit()||
+|Machinegun()||
+|Weaponsvisible()||
+|fightChamber()||
+|Healthui()||
+|UpdateHealthBars()||
+|Regeneratewalls()||
+|destroyWall()||
+|wallBreak()||
+|statusHealth()||
+|Attack()||
+|Speed()||
+|Basicmode()||
+
+</p>
+</details>
+
+
+ ## Individual Developed feature summary
+
+<details><summary>As a player, I should be able to Pause or Restart the Game.</summary>
+<p>
+
+
+Name: Chintagunta Ashok Vardhan Reddy</br>
+CWID: 10400791</br>
+Email Id: avc007@latech.edu</br>
+
+
+### Game Resources:</br>
+*	Added game chamber
+*	Added fight scenarios
+*	Added destroying walls</br>
+
+
+### Method Functionality:</br>
+
+|Functionality| Methods|
+|---|---|
+|Game Chambers| regeneratewalls()|
+||locationchange()|
+|Fight Scenarios| fightChamber()|
+|Destroying Walls |destroyWall()|
+   || wallBreak()|
+   ||Speed()|
+   
+</p>
+</details>
+
+<details><summary>As a User, I should experience Game sounds and animated characters.</summary>
+<p>
+
+
+Name: Gurmeet Sindhu</br>
+CWID: 10399085</br>
+Email Id: gsi008@email.latech.edu</br>
+
+
+### Game Resources:</br>
+* Added sound for weapons.
+* Added sound for background sound
+* Added sound to break walls.</br>
+
+
+### Method Functionality:</br>
+
+|Functionality| Methods|
+|---|---|
+|Weapon Sound| victory()|
+|Background Score| FrmLevel_Load()|
+ ||Controlwarning()|
+|destroy wall |destroyWall()|
+   
+</p>
+</details>
+
+<details><summary>As a player, I should have access to different weapons.</summary>
+<p>
+
+
+Name: Yashvanth Aditya Krishna Vorsu </br>
+CWID: 10398115</br>
+Email Id: yav001@latech.edu</br>
+
+
+### Game Resources:</br>
+
+* Added weapons to kill enemy.</br>
+
+
+### Method Functionality:</br>
+
+|Functionality| Methods|
+|---|---|
+|Weapons| Weaponsvisible()|
+||Weapon.cs|
+||Weaponsvisible()|
+|Weapon Functionality| HitAWeapon()|
+||Machinegun()|
+||Attack()|
+   
+</p>
+</details>
+
+<details><summary>As a player, Health stats should always be visible to me.</summary>
+<p>
+
+
+Name: Pujit Naga Sai Pavan Kumar Etha</br>
+CWID: 10397658</br>
+Email Id: pne005@latech.edu</br>
+
+### Game Resources:</br>
+* Added Health Kit</br>
+
+
+### Method Functionality:</br>
+
+|Functionality| Methods|
+|---|---|
+|Health Kit| playerHealth()|
+||healthui()|
+||Health.cs|
+|Health Kit Control|statusHealth()|
+||UpdateHealthBars()|
+
+   
+</p>
+</details>
+
+</p>
+</details>
+</p>
+</details>
 
 
 </p>
