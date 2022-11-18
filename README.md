@@ -66,7 +66,7 @@ As part of those features team started focusing on basic required funtionality f
 
 ### Class Status Summary:
 
-|Added Class| Modified Class|
+|Modified Class| Added Class|
 |---|---|
 |FrmLevel.cs| EnemyFormPopup.cs|
 |FrmLevel.Designer.cs| EnemyFormPopup.Designer.cs|
